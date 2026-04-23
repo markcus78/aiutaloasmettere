@@ -207,7 +207,7 @@ const Index = () => {
           <h2 className="font-display text-4xl sm:text-6xl mb-8">Chi siamo</h2>
           <p className="text-lg sm:text-xl leading-relaxed opacity-95">
             <span className="font-bold">Wellness Town</span> è la struttura sportiva più completa di Roma Sud.
-            Palestra, piscina, corsi, bistrot. Siamo a{" "}
+            Palestra, piscina, corsi, bistro'. Siamo a{" "}
             <span className="font-bold">Via Francesco Giangiacomo 55, Ardeatino</span>.
             Questo percorso lo abbiamo costruito perché crediamo che fare attività fisica
             non debba essere una punizione.
