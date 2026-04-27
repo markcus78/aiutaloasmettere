@@ -8,7 +8,7 @@ const phases = [
   { n: "2", name: "INCONTRA", teaser: "Il tuo trainer, un caffè, e una cosa che non ti aspetti." },
   { n: "3", name: "PREPARATI", teaser: "La settimana prima del sabato non è tempo libero." },
   { n: "4", name: "COMINCIA", teaser: "Il sabato che cambia tutto. Con gli altri Rookie." },
-  { n: "5", name: "COSTRUISCI", teaser: "5 settimane. 12 allenamenti. Nessuna scusa accettata (quasi)." },
+  { n: "5", name: "COSTRUISCI", teaser: "5 settimane. 12 allenamenti. Una regola sola: non saltare mai due volte di fila. Il resto lo costruisci tu." },
 ];
 
 const gifts = [
@@ -58,7 +58,7 @@ const Index = () => {
           </p>
 
           <div className="flex flex-col gap-1 mb-10 text-base sm:text-lg">
-            <p className="font-bold">Massimo 30 posti. Sabato 9 maggio 2026.</p>
+            <p className="font-bold">Massimo 30 posti. Sabato 23 maggio 2026.</p>
             <p className="text-muted-foreground">Wellness Town — Roma Sud</p>
           </div>
 
@@ -82,17 +82,24 @@ const Index = () => {
       <section className="px-6 sm:px-10 py-24 sm:py-32">
         <div className="max-w-5xl mx-auto text-center">
           <h2 className="font-display text-4xl sm:text-6xl mb-8">Di cosa si tratta</h2>
-          <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto mb-16">
+          <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed max-w-3xl mx-auto mb-8">
             <span className="font-bold text-foreground">Aiutalo a Smettere</span> non è una prova omaggio.
             Non è un corso di fitness. È un percorso gratuito e strutturato, con un trainer dedicato,
             pensato per chi ha sempre rimandato — e questa volta vuole fare sul serio.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+          <blockquote className="border-l-4 border-primary pl-5 sm:pl-6 max-w-3xl mx-auto mb-16 text-left">
+            <p className="text-lg sm:text-xl font-bold leading-relaxed">
+              Chi partecipa si chiama Rookie. Non perché non sa fare le cose — ma perché ha deciso di iniziare a farle.
+            </p>
+          </blockquote>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
             {[
               { Icon: Clock, label: "5 settimane di allenamento pianificato" },
               { Icon: UserCheck, label: "Un trainer che ti segue davvero" },
               { Icon: Target, label: "Zero costi — solo il tuo impegno" },
+              { Icon: Check, label: "Non ti promettiamo un fisico diverso. Ti promettiamo un'abitudine diversa." },
             ].map(({ Icon, label }) => (
               <div key={label} className="flex flex-col items-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
@@ -220,6 +227,9 @@ const Index = () => {
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="font-display text-4xl sm:text-6xl mb-4">Candidati</h2>
+            <p className="text-lg sm:text-xl font-semibold text-foreground/90 leading-relaxed mb-4 max-w-xl mx-auto">
+              Alla fine delle 5 settimane, quando qualcuno ti chiede se vai in palestra, risponderai di sì senza pensarci.
+            </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
               Ti chiamiamo noi — di solito entro poche ore. Se non rispondi, ci riproviamo.
             </p>

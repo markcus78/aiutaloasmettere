@@ -29,7 +29,7 @@ const StickyBar = () => {
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
         <p className="text-sm sm:text-base font-semibold">
-          Massimo 30 posti — <span className="text-primary-foreground/90">Sabato 9 maggio</span>
+          Massimo 30 posti — <span className="text-primary-foreground/90">Sabato 23 maggio</span>
         </p>
         <Button
           onClick={scrollToForm}
