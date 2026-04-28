@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Flame } from "lucide-react";
 
 interface StickyBarProps {
   postiRimasti: number;
@@ -32,11 +31,19 @@ const StickyBar = ({ postiRimasti }: StickyBarProps) => {
         hidden ? "translate-y-full" : "translate-y-0"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <p className="text-sm sm:text-base font-semibold flex items-center gap-2">
-          <Flame className="w-4 h-4 text-destructive shrink-0" aria-hidden />
-          Ultimi {postiRimasti} posti — <span className="text-primary-foreground/90">Sabato 23 maggio</span>
-        </p>
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <img
+            src="/aas-logo.png"
+            alt="Aiutalo a Smettere"
+            className="w-8 h-8 rounded-full bg-white p-0.5 shrink-0"
+          />
+          <p className="text-sm sm:text-base font-semibold flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-warn live-dot shrink-0" />
+            Ultimi {postiRimasti} posti &mdash;{" "}
+            <span className="text-charcoal-foreground/90">Sabato 23 maggio</span>
+          </p>
+        </div>
         <Button
           onClick={scrollToForm}
           className="bg-primary hover:bg-primary/90 text-primary-foreground font-bold tracking-wide px-5 sm:px-7"
