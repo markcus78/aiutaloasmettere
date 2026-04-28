@@ -12,7 +12,7 @@ const domande = [
   {
     testo: "Quando fai la spesa, compri l'acqua in cassetta e la porti in casa senza aiuto?",
     risposte: [
-      { label: "S\u00ec, sempre", active: true },
+      { label: "Sì, sempre", active: true },
       { label: "No, mi faccio aiutare (o compro le bottigliette)", active: false },
     ],
   },
@@ -24,10 +24,10 @@ const domande = [
     ],
   },
   {
-    testo: "Quando cerchi un parcheggio\u2026",
+    testo: "Quando cerchi un parcheggio…",
     risposte: [
       { label: "Parcheggio nel primo posto libero che trovo", active: true },
-      { label: "Cerco il posto pi\u00f9 vicino possibile all'ingresso", active: false },
+      { label: "Cerco il posto più vicino possibile all'ingresso", active: false },
     ],
   },
   {
@@ -47,9 +47,9 @@ const domande = [
 ];
 
 const q6Opzioni: { label: string; value: Q6Answer }[] = [
-  { label: "Spesso \u2014 ci penso da anni ma non parto mai", value: "lunedi" },
-  { label: "Non me lo dico mai \u2014 sinceramente non ci penso", value: "non-ci-penso" },
-  { label: "Non serve \u2014 mi muovo gi\u00e0, solo non lo chiamo sport", value: "mi-muovo" },
+  { label: "Spesso — ci penso da anni ma non parto mai", value: "lunedi" },
+  { label: "Non me lo dico mai — sinceramente non ci penso", value: "non-ci-penso" },
+  { label: "Non serve — mi muovo già, solo non lo chiamo sport", value: "mi-muovo" },
 ];
 
 function getType(score: number, q6: Q6Answer): TipoBase {
@@ -63,36 +63,36 @@ const risultati: Record<TipoBase, Record<Sesso, { titolo: string; descrizione: s
     m: {
       titolo: "Il Cronico",
       descrizione:
-        "Il divano \u00e8 il tuo habitat naturale. Non ti senti in colpa: \u00e8 una scelta di vita. Ma sai gi\u00e0 che non pu\u00f2 durare. Noi non ti diciamo che \u00e8 facile \u2014 ti diciamo che questa volta non lo fai da solo.",
+        "Il divano è il tuo habitat naturale. Non ti senti in colpa: è una scelta di vita. Ma sai già che non può durare. Noi non ti diciamo che è facile — ti diciamo che questa volta non lo fai da solo.",
     },
     f: {
       titolo: "La Cronica",
       descrizione:
-        "Il divano \u00e8 il tuo habitat naturale. Non ti senti in colpa: \u00e8 una scelta di vita. Ma sai gi\u00e0 che non pu\u00f2 durare. Noi non ti diciamo che \u00e8 facile \u2014 ti diciamo che questa volta non lo fai da sola.",
+        "Il divano è il tuo habitat naturale. Non ti senti in colpa: è una scelta di vita. Ma sai già che non può durare. Noi non ti diciamo che è facile — ti diciamo che questa volta non lo fai da sola.",
     },
   },
   pentito: {
     m: {
       titolo: "Il Pentito",
       descrizione:
-        "Hai l'impulso. Ce l'hai sempre avuto. Hai provato e hai smesso \u2014 non perch\u00e9 sei debole, ma perch\u00e9 eri solo. Ti mancava qualcuno che non ti lasciasse mollare. Questa volta il trainer ti tiene.",
+        "Hai l'impulso. Ce l'hai sempre avuto. Hai provato e hai smesso — non perché sei debole, ma perché eri solo. Ti mancava qualcuno che non ti lasciasse mollare. Questa volta il trainer ti tiene.",
     },
     f: {
       titolo: "La Pentita",
       descrizione:
-        "Hai l'impulso. Ce l'hai sempre avuto. Hai provato e hai smesso \u2014 non perch\u00e9 sei debole, ma perch\u00e9 eri sola. Ti mancava qualcuno che non ti lasciasse mollare. Questa volta il trainer ti tiene.",
+        "Hai l'impulso. Ce l'hai sempre avuto. Hai provato e hai smesso — non perché sei debole, ma perché eri sola. Ti mancava qualcuno che non ti lasciasse mollare. Questa volta il trainer ti tiene.",
     },
   },
   falso: {
     m: {
       titolo: "Il Falso",
       descrizione:
-        "Ti muovi gi\u00e0 pi\u00f9 di quanto pensi. Non ti serve motivazione \u2014 ti serve struttura. Cinque settimane per dartela, e per scoprire che in realt\u00e0 non ti spaventa poi cos\u00ec tanto.",
+        "Ti muovi già più di quanto pensi. Non ti serve motivazione — ti serve struttura. Cinque settimane per dartela, e per scoprire che in realtà non ti spaventa poi così tanto.",
     },
     f: {
       titolo: "La Falsa",
       descrizione:
-        "Ti muovi gi\u00e0 pi\u00f9 di quanto pensi. Non ti serve motivazione \u2014 ti serve struttura. Cinque settimane per dartela, e per scoprire che in realt\u00e0 non ti spaventa poi cos\u00ec tanto.",
+        "Ti muovi già più di quanto pensi. Non ti serve motivazione — ti serve struttura. Cinque settimane per dartela, e per scoprire che in realtà non ti spaventa poi così tanto.",
     },
   },
 };
@@ -173,7 +173,7 @@ export default function Quiz() {
     setStep("done");
   };
 
-  // \u2500\u2500 INTRO \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // ── INTRO ───────────────────────────────────────────────────────────────────────────
   if (step === "intro") {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
@@ -194,7 +194,7 @@ export default function Quiz() {
             Se hai provato ad allenarti &mdash; e hai sempre mollato &mdash; abbiamo costruito qualcosa per te.
           </p>
           <p className="text-gray-500 text-base leading-relaxed mb-10 max-w-md">
-            <strong className="text-gray-900">Aiutalo a Smettere</strong> \u00e8 un percorso gratuito
+            <strong className="text-gray-900">Aiutalo a Smettere</strong> è un percorso gratuito
             di 5 settimane con un trainer dedicato. 30 posti. Nessun abbonamento.
             Solo l&apos;allenamento, il trainer, e tu.
           </p>
@@ -206,7 +206,7 @@ export default function Quiz() {
               onClick={() => { setRoma(true); setStep("sesso"); }}
               className="flex-1 h-14 rounded-xl bg-gray-900 text-white font-bold tracking-wider hover:-translate-y-px transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
             >
-              S\u00ec, sono di Roma
+              Sì, sono di Roma
             </button>
             <button
               onClick={() => { setRoma(false); setStep("sesso"); }}
@@ -221,7 +221,7 @@ export default function Quiz() {
     );
   }
 
-  // \u2500\u2500 SESSO \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // ── SESSO ──────────────────────────────────────────────────────────────────────────
   if (step === "sesso") {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
@@ -252,7 +252,7 @@ export default function Quiz() {
     );
   }
 
-  // \u2500\u2500 DOMANDE 1\u20135 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // ── DOMANDE 1–5 ───────────────────────────────────────────────────────────────────
   if (typeof step === "number" && step >= 1 && step <= 5) {
     const q = domande[step - 1];
     return (
@@ -281,7 +281,7 @@ export default function Quiz() {
     );
   }
 
-  // \u2500\u2500 DOMANDA 6 (intenzione) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // ── DOMANDA 6 (intenzione) ────────────────────────────────────────────────────────────────
   if (step === "q6") {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
@@ -291,7 +291,7 @@ export default function Quiz() {
             6 di 6
           </p>
           <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] mb-10">
-            OGNI QUANTO TI DICI &ldquo;INIZIO LUNED\u00cc&rdquo;?
+            OGNI QUANTO TI DICI &ldquo;INIZIO LUNEDÌ&rdquo;?
           </h2>
           <div className="flex flex-col gap-3 w-full">
             {q6Opzioni.map((o) => (
@@ -309,7 +309,7 @@ export default function Quiz() {
     );
   }
 
-  // \u2500\u2500 RISULTATO \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // ── RISULTATO ───────────────────────────────────────────────────────────────────────────
   if (step === "result" && result) {
     return (
       <div className="min-h-screen bg-charcoal text-charcoal-foreground flex flex-col">
@@ -325,7 +325,7 @@ export default function Quiz() {
             {result.descrizione}
           </p>
           <div className="w-full border border-charcoal-foreground/15 rounded-2xl p-6 sm:p-8 text-left">
-            <p className="font-display text-3xl leading-none mb-1">C&apos;\u00e8 speranza.</p>
+            <p className="font-display text-3xl leading-none mb-1">C&apos;è speranza.</p>
             <p className="text-charcoal-foreground/60 text-sm mb-6">
               Candidati ad{" "}
               <strong className="text-charcoal-foreground">Aiutalo a Smettere</strong>{" "}
@@ -338,7 +338,7 @@ export default function Quiz() {
                 name="nome"
                 type="text"
                 autoComplete="given-name"
-                placeholder="Il tuo nome\u2026"
+                placeholder="Il tuo nome…"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 required
@@ -351,7 +351,7 @@ export default function Quiz() {
                 type="tel"
                 inputMode="tel"
                 autoComplete="tel"
-                placeholder="Telefono (ti scriviamo su WhatsApp)\u2026"
+                placeholder="Telefono (ti scriviamo su WhatsApp)…"
                 value={telefono}
                 onChange={(e) => setTelefono(e.target.value)}
                 required
@@ -363,7 +363,7 @@ export default function Quiz() {
                 className="h-14 rounded-xl bg-primary text-primary-foreground font-bold tracking-wider hover:-translate-y-px active:scale-[0.99] transition-transform disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
                 style={{ boxShadow: "0 8px 24px -8px hsl(178 52% 43% / 0.55)" }}
               >
-                {submitting ? "Invio in corso\u2026" : "CANDIDATI ORA \u2192"}
+                {submitting ? "Invio in corso…" : "CANDIDATI ORA →"}
               </button>
             </form>
           </div>
@@ -372,7 +372,7 @@ export default function Quiz() {
     );
   }
 
-  // \u2500\u2500 DONE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  // ── DONE ────────────────────────────────────────────────────────────────────────────────
   if (step === "done") {
     return (
       <div className="min-h-screen bg-charcoal text-charcoal-foreground flex flex-col items-center justify-center px-5 text-center">
@@ -385,14 +385,14 @@ export default function Quiz() {
         </h1>
         <p className="text-charcoal-foreground/70 mb-10 max-w-sm leading-relaxed">
           {isRef
-            ? "Il tuo amico ti ha gi\u00e0 messo sulla strada giusta. Ti scriviamo su WhatsApp entro 24 ore."
+            ? "Il tuo amico ti ha già messo sulla strada giusta. Ti scriviamo su WhatsApp entro 24 ore."
             : "Ti scriviamo su WhatsApp entro 24 ore. Nel frattempo, scopri come funziona il programma."}
         </p>
         <a
           href="/"
           className="h-12 px-8 inline-flex items-center rounded-xl border border-charcoal-foreground/20 font-bold tracking-wider hover:-translate-y-px transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-foreground/40"
         >
-          SCOPRI IL PROGRAMMA \u2192
+          SCOPRI IL PROGRAMMA →
         </a>
       </div>
     );
