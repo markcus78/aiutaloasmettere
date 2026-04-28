@@ -273,9 +273,24 @@ const Index = () => {
         </div>
       </section>
 
-      {/* FOOTER minimal */}
-      <footer className="px-6 sm:px-10 py-10 bg-charcoal text-charcoal-foreground/70 text-center text-sm">
-        <p>© {new Date().getFullYear()} Wellness Town — Via Francesco Giangiacomo 55, Roma</p>
+      {/* FOOTER */}
+      <footer className="px-6 sm:px-10 py-12 bg-charcoal text-charcoal-foreground/70 text-sm">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
+          <div>
+            <p className="font-bold text-charcoal-foreground mb-1">Wellness Town</p>
+            <p>by Appiae Sport ssd arl</p>
+            <p>Via F. Giangiacomo, 55 — Roma</p>
+            <p>P.IVA 17326171000</p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <a href="tel:+390651390560" className="hover:text-charcoal-foreground transition-colors">Tel 06 5139 056</a>
+            <a href="https://wa.me/390651390560" className="hover:text-charcoal-foreground transition-colors">WhatsApp 06 5139 056</a>
+            <a href="mailto:info@wellnesstown.org" className="hover:text-charcoal-foreground transition-colors">info@wellnesstown.org</a>
+          </div>
+          <div className="text-charcoal-foreground/40">
+            <p>© {new Date().getFullYear()} Wellness Town</p>
+          </div>
+        </div>
       </footer>
 
       <StickyBar postiRimasti={POSTI_RIMASTI} />
