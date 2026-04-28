@@ -19,10 +19,12 @@ const About = () => (
         </p>
       </div>
       <div className="col-span-12 md:col-span-5">
-        <div className="aspect-[4/5] rounded-2xl bg-primary-foreground/10 stripes-dark flex items-center justify-center border border-primary-foreground/20">
-          <p className="font-mono text-[11px] text-primary-foreground/70 uppercase tracking-widest text-center px-6">
-            [ foto facciata Wellness Town<br />oppure interno palestra<br />· 4:5 verticale ]
-          </p>
+        <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-primary-foreground/20">
+          <img
+            src="/wellness-town-facciata.jpg"
+            alt="Wellness Town, Roma Sud"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
     </div>
