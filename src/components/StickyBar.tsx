@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Flame } from "lucide-react";
 
-const StickyBar = () => {
+interface StickyBarProps {
+  postiRimasti: number;
+}
+
+const StickyBar = ({ postiRimasti }: StickyBarProps) => {
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
@@ -28,8 +33,9 @@ const StickyBar = () => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-        <p className="text-sm sm:text-base font-semibold">
-          Massimo 30 posti — <span className="text-primary-foreground/90">Sabato 23 maggio</span>
+        <p className="text-sm sm:text-base font-semibold flex items-center gap-2">
+          <Flame className="w-4 h-4 text-destructive shrink-0" aria-hidden />
+          Ultimi {postiRimasti} posti — <span className="text-primary-foreground/90">Sabato 23 maggio</span>
         </p>
         <Button
           onClick={scrollToForm}
