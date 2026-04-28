@@ -1,8 +1,8 @@
 const notFor = [
-  "Pensi di venire \u201cquando ti va\u201d.",
+  "Pensi di venire “quando ti va”.",
   "Cerchi una prova omaggio per testare la struttura.",
   "Vuoi un fisico in 5 settimane. Spoiler: non capita.",
-  "Non hai uno smartphone (ti scriviamo di l\u00ec).",
+  "Non hai uno smartphone (ti scriviamo di lì).",
 ];
 
 const yesFor = [
@@ -20,7 +20,7 @@ const Filter = () => (
     <div className="max-w-7xl mx-auto">
       <div className="flex items-end justify-between gap-6 mb-12 flex-wrap">
         <div>
-          <p className="sec-num mb-3 text-charcoal-foreground/60">03 / Onest\u00e0 brutale</p>
+          <p className="sec-num mb-3 text-charcoal-foreground/60">03 / Onestà brutale</p>
           <h2 className="font-display text-5xl sm:text-7xl leading-[0.95]">
             Non sei per tutti.
             <br />
