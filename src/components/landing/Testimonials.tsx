@@ -1,17 +1,23 @@
 const testimonials = [
   {
+    img: "/testimonial-marco.jpg",
+    imgAlt: "Marco, 41 anni",
     quote: "\u201cHo cominciato 14 volte negli ultimi 10 anni. \u00c8 la prima che continuo dopo le 5 settimane.\u201d",
     name: "Marco \u00b7 41",
     edition: "Edizione Settembre 2025 \u00b7 oggi va 3 volte a settimana",
     dark: false,
   },
   {
+    img: "/testimonial-giulia.jpg",
+    imgAlt: "Giulia, 33 anni",
     quote: "\u201cPensavo di essere il problema. Era il \u2018da solo\u2019 il problema.\u201d",
     name: "Giulia \u00b7 33",
     edition: "Edizione Febbraio 2026",
     dark: true,
   },
   {
+    img: "/testimonial-andrea.jpg",
+    imgAlt: "Andrea, 52 anni",
     quote: "\u201cMi serviva qualcuno che si arrabbiasse se non venivo. Ho trovato Stefano.\u201d",
     name: "Andrea \u00b7 52",
     edition: "Edizione Settembre 2025",
@@ -58,18 +64,12 @@ const Testimonials = () => (
                 : "bg-card border border-border"
             }`}
           >
-            <div
-              className={`aspect-[4/3] flex items-center justify-center ${
-                t.dark ? "stripes-dark" : "stripes"
-              }`}
-            >
-              <p
-                className={`font-mono text-[11px] uppercase tracking-widest ${
-                  t.dark ? "text-charcoal-foreground/50" : "text-muted-foreground"
-                }`}
-              >
-                [ ritratto ]
-              </p>
+            <div className="aspect-[4/3] overflow-hidden">
+              <img
+                src={t.img}
+                alt={t.imgAlt}
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="p-7 flex-1 flex flex-col">
               <p className="font-display text-3xl leading-[1.05] mb-4">{t.quote}</p>
