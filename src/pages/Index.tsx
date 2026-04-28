@@ -33,12 +33,11 @@ const Index = () => {
       {/* HERO */}
       <section className="relative min-h-screen flex flex-col px-6 sm:px-10 pt-6 pb-32">
         <div className="flex items-center justify-between">
-          <div
-            aria-label="Logo Aiutalo a Smettere"
-            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-bold tracking-widest px-4 py-2 rounded-md text-sm"
-          >
-            [LOGO]
-          </div>
+          <img
+            src="/logo-wt.png"
+            alt="Wellness Town"
+            className="h-10 w-auto"
+          />
           <span className="hidden sm:inline-block text-xs uppercase tracking-[0.25em] text-muted-foreground font-semibold">
             Wellness Town · Roma Sud
           </span>
