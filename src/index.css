@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 /* Design system — "Aiutalo a Smettere"
+   Colori allineati al logo Wellness Town (teal #3aafa9).
    All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Brand palette */
-    --background: 42 33% 97%;            /* off-white #f8f6f1 */
-    --foreground: 0 0% 11%;              /* charcoal #1c1c1c */
+    --background: 42 33% 97%;            /* off-white caldo */
+    --foreground: 0 0% 11%;              /* charcoal */
 
     --card: 0 0% 100%;
     --card-foreground: 0 0% 11%;
@@ -18,31 +18,31 @@
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 11%;
 
-    --primary: 144 61% 26%;              /* forest green #1a6b3c */
-    --primary-foreground: 42 33% 97%;
+    --primary: 178 52% 43%;              /* teal logo WT #3aafa9 */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 42 25% 92%;
+    --secondary: 178 20% 94%;
     --secondary-foreground: 0 0% 11%;
 
-    --muted: 42 20% 90%;
+    --muted: 178 15% 91%;
     --muted-foreground: 0 0% 35%;
 
-    --accent: 144 61% 26%;
-    --accent-foreground: 42 33% 97%;
+    --accent: 178 52% 43%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 75% 50%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 88%;
     --input: 0 0% 85%;
-    --ring: 144 61% 26%;
+    --ring: 178 52% 43%;
 
     --radius: 0.5rem;
 
     /* Surfaces */
     --charcoal: 0 0% 11%;
     --charcoal-foreground: 42 33% 97%;
-    --check: 144 61% 40%;
+    --check: 178 52% 38%;
     --cross: 0 75% 55%;
 
     --sidebar-background: 0 0% 98%;
@@ -52,7 +52,7 @@
     --sidebar-accent: 240 4.8% 95.9%;
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-ring: 178 52% 43%;
   }
 
   .dark {
@@ -62,55 +62,23 @@
     --card-foreground: 42 33% 97%;
     --popover: 0 0% 14%;
     --popover-foreground: 42 33% 97%;
-    --primary: 144 61% 40%;
-    --primary-foreground: 0 0% 11%;
+    --primary: 178 52% 52%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 18%;
     --secondary-foreground: 42 33% 97%;
     --muted: 0 0% 18%;
     --muted-foreground: 0 0% 70%;
-    --accent: 144 61% 40%;
-    --accent-foreground: 0 0% 11%;
+    --accent: 178 52% 52%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 75% 50%;
     --destructive-foreground: 0 0% 100%;
     --border: 0 0% 22%;
     --input: 0 0% 22%;
-    --ring: 144 61% 40%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
+    --ring: 178 52% 52%;
+    color-scheme: dark;
   }
 
   html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  h1, h2, h3, .font-display {
-    font-family: 'Bebas Neue', 'Inter', sans-serif;
-    letter-spacing: 0.01em;
-  }
-}
-
-@layer utilities {
-  .bg-charcoal { background-color: hsl(var(--charcoal)); }
-  .text-charcoal { color: hsl(var(--charcoal)); }
-  .text-charcoal-foreground { color: hsl(var(--charcoal-foreground)); }
-  .text-check { color: hsl(var(--check)); }
-  .text-cross { color: hsl(var(--cross)); }
-
-  @keyframes bounce-down {
-    0%, 100% { transform: translateY(0); opacity: 0.7; }
-    50% { transform: translateY(8px); opacity: 1; }
-  }
-  .animate-bounce-down {
-    animation: bounce-down 1.8s ease-in-out infinite;
+    color-scheme: light dark;
   }
 }
