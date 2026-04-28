@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 const phases = [
   {
@@ -43,7 +43,7 @@ const phases = [
   },
 ];
 
-function RevealLi({ children, className }: { children: React.ReactNode; className?: string }) {
+function RevealLi({ children, className }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
@@ -83,7 +83,7 @@ const Phases = () => (
         </div>
         <div className="col-span-12 md:col-span-5 flex md:items-end">
           <p className="text-ink2 text-lg leading-relaxed">
-            Niente improvvisazione. Ogni settimana sa già cosa fare di te. Tu devi solo presentarti.
+            Niente improvvisazione. Ogni settimana sa gi\u00e0 cosa fare di te. Tu devi solo presentarti.
           </p>
         </div>
       </div>
