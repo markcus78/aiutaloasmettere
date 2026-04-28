@@ -8,7 +8,7 @@ const tickerItems = [
   "5 SETTIMANE",
   "12 ALLENAMENTI",
   "1 TRAINER DEDICATO",
-  "0\u20AC",
+  "0€",
   "30 POSTI",
   "NESSUNA SCUSA",
 ];
@@ -66,7 +66,7 @@ const Hero = () => (
             <br className="hidden sm:block" />
             <span className="strike-out text-muted-foreground">38 volte.</span>
             <br />
-            QUESTA <span className="text-primary">\u00c8 LA 39.</span>
+            QUESTA <span className="text-primary">È LA 39.</span>
           </h1>
 
           <p className="text-lg sm:text-2xl text-ink2 max-w-2xl leading-relaxed mb-8">
@@ -100,7 +100,7 @@ const Hero = () => (
                 </span>
               </div>
               <div className="text-[13px] leading-tight">
-                <p className="font-bold">Gi\u00e0 18 candidati</p>
+                <p className="font-bold">Già 18 candidati</p>
                 <p className="text-muted-foreground">in 4 giorni &middot; max 30 posti</p>
               </div>
             </div>
