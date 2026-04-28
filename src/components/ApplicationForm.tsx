@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
+const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/1842375/uvdpto7/";
+
 const schema = z.object({
   nome: z.string().trim().max(80, "Massimo 80 caratteri").optional().or(z.literal("")),
   cognome: z.string().trim().max(80, "Massimo 80 caratteri").optional().or(z.literal("")),
@@ -37,7 +39,7 @@ const ApplicationForm = () => {
     if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const parsed = schema.safeParse(values);
     if (!parsed.success) {
@@ -51,13 +53,27 @@ const ApplicationForm = () => {
       return;
     }
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nome: parsed.data.nome ?? "",
+          cognome: parsed.data.cognome ?? "",
+          telefono: parsed.data.telefono,
+          email: parsed.data.email,
+        }),
+      });
+      if (!res.ok) throw new Error("Errore di rete");
       toast.success("Candidatura inviata!", {
         description: "Ti chiamiamo noi entro poche ore.",
       });
       setValues({ nome: "", cognome: "", telefono: "", email: "", privacy: false });
+    } catch {
+      toast.error("Qualcosa è andato storto. Riprova o chiamaci direttamente.");
+    } finally {
       setSubmitting(false);
-    }, 400);
+    }
   };
 
   const errClass = (k: keyof FieldErrors) =>
