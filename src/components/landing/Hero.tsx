@@ -138,23 +138,14 @@ const Hero = () => (
           </div>
         </div>
 
-        {/* Right: placeholder */}
+        {/* Right: real photos */}
         <aside className="col-span-12 lg:col-span-5 flex flex-col gap-4">
-          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border stripes bg-card">
-            <div className="absolute inset-0 flex items-center justify-center text-center px-6">
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-widest text-muted-foreground mb-2">
-                  Hero &middot; 4:5
-                </p>
-                <p className="font-mono text-[13px] text-foreground/60 leading-relaxed">
-                  [ foto verticale: persona
-                  <br />
-                  che esce da spogliatoio,
-                  <br />
-                  asciugamano sul collo ]
-                </p>
-              </div>
-            </div>
+          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border border-border">
+            <img
+              src="/hero-rookie.jpg"
+              alt="Un Rookie all'uscita dallo spogliatoio"
+              className="w-full h-full object-cover"
+            />
             <div className="absolute top-4 left-4 bg-charcoal text-charcoal-foreground font-mono uppercase tracking-widest text-[10px] px-2 py-1 rounded">
               REC &middot; 23.05.26
             </div>
@@ -163,14 +154,13 @@ const Hero = () => (
             </div>
           </div>
           <div className="grid grid-cols-3 gap-2">
-            {["palestra", "trainer", "rookie"].map((label) => (
-              <div
-                key={label}
-                className="aspect-square rounded-lg stripes bg-card border border-border flex items-center justify-center"
-              >
-                <p className="font-mono text-[10px] text-muted-foreground uppercase">
-                  [ {label} ]
-                </p>
+            {[
+              { src: "/palestra.jpg", alt: "La palestra di Wellness Town" },
+              { src: "/trainer.jpg", alt: "Un trainer con un Rookie" },
+              { src: "/rookie.jpg", alt: "Una Rookie che si prepara" },
+            ].map(({ src, alt }) => (
+              <div key={src} className="aspect-square rounded-lg overflow-hidden border border-border">
+                <img src={src} alt={alt} className="w-full h-full object-cover" />
               </div>
             ))}
           </div>
