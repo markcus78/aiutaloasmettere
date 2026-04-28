@@ -1,28 +1,28 @@
 const packageItems = [
   {
     name: "Accesso completo alla struttura",
-    price: "\u20AC220",
+    price: "€220",
     desc: "Palestra, piscina, corsi. Per tutta la durata del percorso.",
   },
   {
     name: "Programma personalizzato",
-    price: "\u20AC280",
+    price: "€280",
     desc: "Costruito con il tuo trainer. Come un piano di fisioterapia, ma per cominciare.",
   },
   {
     name: "Visita con il nutrizionista",
-    price: "\u20AC80",
-    desc: "A met\u00e0 percorso, per fare il punto.",
+    price: "€80",
+    desc: "A metà percorso, per fare il punto.",
   },
   {
     name: "Badge di accesso",
-    price: "\u20AC15",
-    desc: "Niente cauzione. Per i Rookie \u00e8 in omaggio.",
+    price: "€15",
+    desc: "Niente cauzione. Per i Rookie è in omaggio.",
   },
   {
     name: "Welcome kit",
-    price: "\u20AC25",
-    desc: "Cosa c\u2019\u00e8 dentro lo scopri il sabato.",
+    price: "€25",
+    desc: "Cosa c’è dentro lo scopri il sabato.",
   },
 ];
 
@@ -33,9 +33,9 @@ const Value = () => (
         <div className="col-span-12 md:col-span-7">
           <p className="sec-num mb-3">05 / Cosa ricevi</p>
           <h2 className="font-display text-5xl sm:text-7xl leading-[0.95]">
-            Vale <span className="strike-out text-muted-foreground">\u20AC620</span>
+            Vale <span className="strike-out text-muted-foreground">€620</span>
             <br />
-            Lo paghi <span className="text-primary">\u20AC0</span>.
+            Lo paghi <span className="text-primary">€0</span>.
           </h2>
         </div>
         <div className="col-span-12 md:col-span-5 flex md:items-end">
@@ -72,9 +72,9 @@ const Value = () => (
               <span className="col-span-7 font-display text-3xl tracking-wide">Totale Rookie</span>
               <span className="col-span-5 text-right">
                 <span className="font-display text-3xl text-charcoal-foreground/40 line-through mr-2">
-                  \u20AC620
+                  €620
                 </span>
-                <span className="font-display text-4xl text-primary">\u20AC0</span>
+                <span className="font-display text-4xl text-primary">€0</span>
               </span>
             </li>
           </ul>
@@ -87,10 +87,10 @@ const Value = () => (
               La garanzia Rookie
             </p>
             <h3 className="font-display text-3xl mb-3">
-              Se al primo allenamento ti accorgi che non \u00e8 per te, ce lo dici e finisce l\u00ec.
+              Se al primo allenamento ti accorgi che non è per te, ce lo dici e finisce lì.
             </h3>
             <p className="text-ink2 leading-relaxed">
-              Niente rimborsi perch\u00e9 non hai pagato niente. Niente domande perch\u00e9 non te
+              Niente rimborsi perché non hai pagato niente. Niente domande perché non te
               le facciamo. Niente catena di follow-up commerciali &mdash; promesso.
             </p>
           </div>
