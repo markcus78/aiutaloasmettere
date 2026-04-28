@@ -1,7 +1,10 @@
-import { ArrowDown, ChevronRight, Clock, UserCheck, Target, Dumbbell, ClipboardList, Apple, Gift, MapPin, X, Check } from "lucide-react";
+import { ArrowDown, ChevronRight, Clock, UserCheck, Target, Dumbbell, ClipboardList, Apple, Gift, MapPin, X, Check, CreditCard, Flame } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import StickyBar from "@/components/StickyBar";
 import ApplicationForm from "@/components/ApplicationForm";
+
+const POSTI_RIMASTI = 12;
+const POSTI_TOTALI = 30;
 
 const phases = [
   { n: "1", name: "PRENOTA", teaser: "Ti candidati. Non è automatico — ti chiamiamo noi." },
@@ -13,9 +16,10 @@ const phases = [
 
 const gifts = [
   { icon: Dumbbell, title: "Accesso completo alla struttura", desc: "Per tutta la durata del percorso." },
-  { icon: ClipboardList, title: "Programma personalizzato", desc: "Costruito insieme al tuo trainer." },
-  { icon: Apple, title: "Appuntamento con il nutrizionista", desc: "A metà percorso, per fare il punto." },
-  { icon: Gift, title: "Welcome kit", desc: "Quello che c'è dentro lo scopri il sabato." },
+  { icon: ClipboardList, title: "Programma personalizzato", desc: "Costruito insieme al tuo trainer — come un piano di fisioterapia, ma per cominciare." },
+  { icon: Apple, title: "Appuntamento con il nutrizionista", desc: "A meta percorso, per fare il punto." },
+  { icon: CreditCard, title: "Badge di accesso in omaggio", desc: "Normalmente prevede una cauzione di 15 euro — per i Rookie e gratis." },
+  { icon: Gift, title: "Welcome kit", desc: "Quello che c'e dentro lo scopri il sabato." },
 ];
 
 const scrollToForm = (e: React.MouseEvent) => {
@@ -42,14 +46,14 @@ const Index = () => {
 
         <div className="flex-1 flex flex-col justify-center max-w-5xl mx-auto w-full py-16">
           <div className="inline-flex w-fit items-center gap-2 bg-primary/10 text-primary px-3 py-1.5 rounded-full mb-8">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-primary motion-safe:animate-pulse" />
             <span className="text-xs uppercase tracking-widest font-bold">Percorso gratuito · 5 settimane</span>
           </div>
 
           <h1 className="font-display text-5xl sm:text-7xl md:text-8xl leading-[0.95] mb-8">
             Hai iniziato a fare sport <span className="text-primary">38 volte</span>.
             <br />
-            Questa è <span className="underline decoration-primary decoration-[6px] underline-offset-8">la 39ª</span>.
+            Questa è <span className="underline decoration-primary decoration-[6px] underline-offset-8">la 39.</span>
           </h1>
 
           <p className="text-lg sm:text-2xl text-foreground/80 max-w-3xl mb-10 leading-relaxed">
@@ -57,9 +61,14 @@ const Index = () => {
             <span className="font-semibold text-foreground"> Per sempre.</span>
           </p>
 
-          <div className="flex flex-col gap-1 mb-10 text-base sm:text-lg">
-            <p className="font-bold">Massimo 30 posti. Sabato 23 maggio 2026.</p>
-            <p className="text-muted-foreground">Wellness Town — Roma Sud</p>
+          <div className="flex flex-col gap-2 mb-10">
+            <div className="inline-flex w-fit items-center gap-2 bg-destructive/10 text-destructive px-3 py-1.5 rounded-full">
+              <Flame className="w-3.5 h-3.5 shrink-0" aria-hidden />
+              <span className="text-sm font-bold uppercase tracking-widest">
+                Ultimi {POSTI_RIMASTI} posti su {POSTI_TOTALI} — Sabato 23 maggio 2026
+              </span>
+            </div>
+            <p className="text-muted-foreground text-base">Wellness Town — Roma Sud</p>
           </div>
 
           <div>
@@ -74,7 +83,7 @@ const Index = () => {
         </div>
 
         <div className="flex justify-center">
-          <ArrowDown className="w-6 h-6 text-primary animate-bounce-down" aria-hidden />
+          <ArrowDown className="w-6 h-6 text-primary motion-safe:animate-bounce" aria-hidden />
         </div>
       </section>
 
@@ -103,11 +112,22 @@ const Index = () => {
             ].map(({ Icon, label }) => (
               <div key={label} className="flex flex-col items-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Icon className="w-7 h-7 text-primary" />
+                  <Icon className="w-7 h-7 text-primary" aria-hidden />
                 </div>
                 <p className="font-bold text-lg leading-snug max-w-xs">{label}</p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-14">
+            <Button
+              size="lg"
+              onClick={scrollToForm}
+              className="h-14 px-10 bg-primary hover:bg-primary/90 text-primary-foreground text-base font-bold tracking-wider shadow-lg"
+            >
+              VOGLIO UN POSTO
+            </Button>
+            <p className="text-sm text-muted-foreground mt-3">Ultimi {POSTI_RIMASTI} posti disponibili · Nessun costo</p>
           </div>
         </div>
       </section>
@@ -131,7 +151,7 @@ const Index = () => {
                 <div className="font-display text-6xl text-primary leading-none mb-4">{p.n}</div>
                 <h3 className="font-display text-2xl mb-3 tracking-wide">{p.name}</h3>
                 <p className="text-sm text-foreground/75 leading-relaxed">{p.teaser}</p>
-                <ChevronRight className="absolute top-6 right-6 w-5 h-5 text-primary/40 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                <ChevronRight className="absolute top-6 right-6 w-5 h-5 text-primary/40 group-hover:text-primary group-hover:translate-x-1 transition-all" aria-hidden />
               </li>
             ))}
           </ol>
@@ -152,7 +172,7 @@ const Index = () => {
                 "Non hai uno smartphone",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-4">
-                  <X className="w-6 h-6 text-cross shrink-0 mt-1" strokeWidth={3} />
+                  <X className="w-6 h-6 text-cross shrink-0 mt-1" strokeWidth={3} aria-hidden />
                   <span className="text-lg leading-relaxed">{t}</span>
                 </li>
               ))}
@@ -170,7 +190,7 @@ const Index = () => {
                 "Sei pronto a presentarti quando hai detto che saresti venuto",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-4">
-                  <Check className="w-6 h-6 text-check shrink-0 mt-1" strokeWidth={3} />
+                  <Check className="w-6 h-6 text-check shrink-0 mt-1" strokeWidth={3} aria-hidden />
                   <span className="text-lg leading-relaxed">{t}</span>
                 </li>
               ))}
@@ -191,7 +211,7 @@ const Index = () => {
             {gifts.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-card border border-border rounded-xl p-7 flex gap-5 items-start">
                 <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
-                  <Icon className="w-6 h-6 text-primary" />
+                  <Icon className="w-6 h-6 text-primary" aria-hidden />
                 </div>
                 <div>
                   <h3 className="font-bold text-lg mb-1 leading-snug">{title}</h3>
@@ -209,16 +229,26 @@ const Index = () => {
 
       {/* CHI SIAMO */}
       <section className="px-6 sm:px-10 py-24 sm:py-32 bg-primary text-primary-foreground">
-        <div className="max-w-3xl mx-auto text-center">
-          <MapPin className="w-10 h-10 mx-auto mb-6 opacity-90" />
+        <div className="max-w-4xl mx-auto text-center">
+          <MapPin className="w-10 h-10 mx-auto mb-6 opacity-90" aria-hidden />
           <h2 className="font-display text-4xl sm:text-6xl mb-8">Chi siamo</h2>
-          <p className="text-lg sm:text-xl leading-relaxed opacity-95">
+          <p className="text-lg sm:text-xl leading-relaxed opacity-95 mb-14">
             <span className="font-bold">Wellness Town</span> è la struttura sportiva più completa di Roma Sud.
             Palestra, piscina, corsi, bistro'. Siamo a{" "}
             <span className="font-bold">Via Francesco Giangiacomo 55, Ardeatino</span>.
             Questo percorso lo abbiamo costruito perché crediamo che fare attività fisica
             non debba essere una punizione.
           </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-primary-foreground/20 pt-12">
+            <div>
+              <p className="font-display text-6xl sm:text-7xl leading-none mb-2">2003</p>
+              <p className="text-primary-foreground/80 text-lg">Anno di apertura — oltre 20 anni di esperienza</p>
+            </div>
+            <div>
+              <p className="font-display text-6xl sm:text-7xl leading-none mb-2">31.574</p>
+              <p className="text-primary-foreground/80 text-lg">Persone che hanno scelto Wellness Town</p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -226,12 +256,16 @@ const Index = () => {
       <section id="candidati" className="px-6 sm:px-10 py-24 sm:py-32 scroll-mt-8">
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 bg-destructive/10 text-destructive px-3 py-1.5 rounded-full mb-6">
+              <Flame className="w-3.5 h-3.5 shrink-0" aria-hidden />
+              <span className="text-sm font-bold uppercase tracking-widest">Ultimi {POSTI_RIMASTI} posti disponibili</span>
+            </div>
             <h2 className="font-display text-4xl sm:text-6xl mb-4">Candidati</h2>
             <p className="text-lg sm:text-xl font-semibold text-foreground/90 leading-relaxed mb-4 max-w-xl mx-auto">
               Alla fine delle 5 settimane, quando qualcuno ti chiede se vai in palestra, risponderai di sì senza pensarci.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Ti chiamiamo noi — di solito entro poche ore. Se non rispondi, ci riproviamo.
+              Compila il form — ti chiamiamo entro poche ore per verificare insieme che il percorso faccia per te.
             </p>
           </div>
           <div className="bg-secondary/60 border border-border rounded-2xl p-6 sm:p-10">
@@ -245,8 +279,7 @@ const Index = () => {
         <p>© {new Date().getFullYear()} Wellness Town — Via Francesco Giangiacomo 55, Roma</p>
       </footer>
 
-      <StickyBar />
-      {/* spacer to avoid sticky bar covering footer end */}
+      <StickyBar postiRimasti={POSTI_RIMASTI} />
       <div className="h-20" aria-hidden />
     </main>
   );
