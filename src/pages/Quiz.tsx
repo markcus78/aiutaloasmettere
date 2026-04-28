@@ -167,7 +167,7 @@ export default function Quiz() {
   // ── SESSO ──────────────────────────────────────────────────────────────────
   if (step === "sesso") {
     return (
-      <div className="min-h-screen bg-cream flex flex-col">
+      <div className="min-h-screen bg-white text-gray-900 flex flex-col">
         <ProgressBar value={0} />
         <div className="flex-1 flex flex-col items-center justify-center px-5 text-center">
           <div className="flex items-center gap-3 mb-8">
@@ -203,7 +203,7 @@ export default function Quiz() {
   if (typeof step === "number" && step >= 1 && step <= 5) {
     const q = domande[step - 1];
     return (
-      <div className="min-h-screen bg-cream flex flex-col">
+      <div className="min-h-screen bg-white text-gray-900 flex flex-col">
         <ProgressBar value={progressValue} />
         <div className="flex-1 flex flex-col items-center justify-center px-5 w-full max-w-xl mx-auto text-center">
           <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6">
@@ -217,7 +217,7 @@ export default function Quiz() {
               <button
                 key={r.label}
                 onClick={() => handleQ(r.active, step - 1)}
-                className="w-full py-5 px-6 rounded-xl border-2 border-border bg-background hover:border-primary hover:bg-primary/5 text-left font-semibold text-base transition-all"
+                className="w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white text-gray-900 hover:border-primary hover:bg-primary/5 text-left font-semibold text-base transition-all"
               >
                 {r.label}
               </button>
@@ -231,7 +231,7 @@ export default function Quiz() {
   // ── DOMANDA 6 (intenzione) ────────────────────────────────────────────────
   if (step === "q6") {
     return (
-      <div className="min-h-screen bg-cream flex flex-col">
+      <div className="min-h-screen bg-white text-gray-900 flex flex-col">
         <ProgressBar value={85} />
         <div className="flex-1 flex flex-col items-center justify-center px-5 w-full max-w-xl mx-auto text-center">
           <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6">
@@ -245,7 +245,7 @@ export default function Quiz() {
               <button
                 key={o.value}
                 onClick={() => { setQ6Answer(o.value); setStep("result"); }}
-                className="w-full py-5 px-6 rounded-xl border-2 border-border bg-background hover:border-primary hover:bg-primary/5 text-left font-semibold text-base transition-all"
+                className="w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white text-gray-900 hover:border-primary hover:bg-primary/5 text-left font-semibold text-base transition-all"
               >
                 {o.label}
               </button>
