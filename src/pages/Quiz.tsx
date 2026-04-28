@@ -6,13 +6,13 @@ const WEBHOOK = "https://hooks.zapier.com/hooks/catch/1842375/uvdpto7/";
 type Sesso = "m" | "f";
 type Q6Answer = "lunedi" | "non-ci-penso" | "mi-muovo";
 type TipoBase = "cronico" | "pentito" | "falso";
-type Step = "sesso" | 1 | 2 | 3 | 4 | 5 | "q6" | "result" | "done";
+type Step = "intro" | "sesso" | 1 | 2 | 3 | 4 | 5 | "q6" | "result" | "done";
 
 const domande = [
   {
     testo: "Quando fai la spesa, compri l'acqua in cassetta e la porti in casa senza aiuto?",
     risposte: [
-      { label: "Si, sempre", active: true },
+      { label: "S\u00ec, sempre", active: true },
       { label: "No, mi faccio aiutare (o compro le bottigliette)", active: false },
     ],
   },
@@ -24,10 +24,10 @@ const domande = [
     ],
   },
   {
-    testo: "Quando cerchi un parcheggio...",
+    testo: "Quando cerchi un parcheggio\u2026",
     risposte: [
       { label: "Parcheggio nel primo posto libero che trovo", active: true },
-      { label: "Cerco il posto piu vicino possibile all'ingresso", active: false },
+      { label: "Cerco il posto pi\u00f9 vicino possibile all'ingresso", active: false },
     ],
   },
   {
@@ -47,9 +47,9 @@ const domande = [
 ];
 
 const q6Opzioni: { label: string; value: Q6Answer }[] = [
-  { label: "Spesso — ci penso da anni ma non parto mai", value: "lunedi" },
-  { label: "Non me lo dico mai — sinceramente non ci penso", value: "non-ci-penso" },
-  { label: "Non serve — mi muovo gia, solo non lo chiamo sport", value: "mi-muovo" },
+  { label: "Spesso \u2014 ci penso da anni ma non parto mai", value: "lunedi" },
+  { label: "Non me lo dico mai \u2014 sinceramente non ci penso", value: "non-ci-penso" },
+  { label: "Non serve \u2014 mi muovo gi\u00e0, solo non lo chiamo sport", value: "mi-muovo" },
 ];
 
 function getType(score: number, q6: Q6Answer): TipoBase {
@@ -63,45 +63,51 @@ const risultati: Record<TipoBase, Record<Sesso, { titolo: string; descrizione: s
     m: {
       titolo: "Il Cronico",
       descrizione:
-        "Il divano e il tuo habitat naturale. Non ti senti in colpa: e una scelta di vita. L'ultima volta che hai corso e stato per prendere l'autobus, e non ci sei arrivato lo stesso.",
+        "Il divano \u00e8 il tuo habitat naturale. Non ti senti in colpa: \u00e8 una scelta di vita. Ma sai gi\u00e0 che non pu\u00f2 durare. Noi non ti diciamo che \u00e8 facile \u2014 ti diciamo che questa volta non lo fai da solo.",
     },
     f: {
       titolo: "La Cronica",
       descrizione:
-        "Il divano e il tuo habitat naturale. Non ti senti in colpa: e una scelta di vita. L'ultima volta che hai corso e stato per prendere l'autobus, e non ci sei arrivata lo stesso.",
+        "Il divano \u00e8 il tuo habitat naturale. Non ti senti in colpa: \u00e8 una scelta di vita. Ma sai gi\u00e0 che non pu\u00f2 durare. Noi non ti diciamo che \u00e8 facile \u2014 ti diciamo che questa volta non lo fai da sola.",
     },
   },
   pentito: {
     m: {
       titolo: "Il Pentito",
       descrizione:
-        "In teoria vuoi muoverti. In pratica hai tre paia di scarpe da ginnastica nuove e nessun allenamento fatto. Ogni lunedi e quello buono. Ogni lunedi.",
+        "Hai l'impulso. Ce l'hai sempre avuto. Hai provato e hai smesso \u2014 non perch\u00e9 sei debole, ma perch\u00e9 eri solo. Ti mancava qualcuno che non ti lasciasse mollare. Questa volta il trainer ti tiene.",
     },
     f: {
       titolo: "La Pentita",
       descrizione:
-        "In teoria vuoi muoverti. In pratica hai tre paia di scarpe da ginnastica nuove e nessun allenamento fatto. Ogni lunedi e quello buono. Ogni lunedi.",
+        "Hai l'impulso. Ce l'hai sempre avuto. Hai provato e hai smesso \u2014 non perch\u00e9 sei debole, ma perch\u00e9 eri sola. Ti mancava qualcuno che non ti lasciasse mollare. Questa volta il trainer ti tiene.",
     },
   },
   falso: {
     m: {
       titolo: "Il Falso",
       descrizione:
-        "Ti lamenti di non muoverti mai, ma le risposte dicono altro. Il problema non sei tu: non ti sei mai dato una struttura vera.",
+        "Ti muovi gi\u00e0 pi\u00f9 di quanto pensi. Non ti serve motivazione \u2014 ti serve struttura. Cinque settimane per dartela, e per scoprire che in realt\u00e0 non ti spaventa poi cos\u00ec tanto.",
     },
     f: {
       titolo: "La Falsa",
       descrizione:
-        "Ti lamenti di non muoverti mai, ma le risposte dicono altro. Il problema non sei tu: non ti sei mai data una struttura vera.",
+        "Ti muovi gi\u00e0 pi\u00f9 di quanto pensi. Non ti serve motivazione \u2014 ti serve struttura. Cinque settimane per dartela, e per scoprire che in realt\u00e0 non ti spaventa poi cos\u00ec tanto.",
     },
   },
 };
 
+const ANSWER_BTN =
+  "w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white text-gray-900 " +
+  "hover:border-primary hover:bg-primary/10 active:scale-[0.99] " +
+  "text-left font-semibold text-base transition-transform " +
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
+
 function ProgressBar({ value, dark }: { value: number; dark?: boolean }) {
   return (
-    <div className={`h-1 w-full ${dark ? "bg-charcoal-foreground/10" : "bg-border"}`}>
+    <div className={`h-1 w-full ${dark ? "bg-charcoal-foreground/10" : "bg-gray-100"}`}>
       <div
-        className="h-full bg-primary transition-all duration-500 ease-out"
+        className="h-full bg-primary transition-[width] duration-500 ease-out"
         style={{ width: `${value}%` }}
       />
     </div>
@@ -112,8 +118,9 @@ export default function Quiz() {
   const [searchParams] = useSearchParams();
   const isRef = searchParams.get("ref") === "friend";
 
-  const [step, setStep] = useState<Step>("sesso");
+  const [step, setStep] = useState<Step>("intro");
   const [sesso, setSesso] = useState<Sesso | null>(null);
+  const [roma, setRoma] = useState<boolean | null>(null);
   const [answers, setAnswers] = useState<boolean[]>([]);
   const [q6Answer, setQ6Answer] = useState<Q6Answer | null>(null);
   const [nome, setNome] = useState("");
@@ -125,13 +132,14 @@ export default function Quiz() {
   const result = tipo && sesso ? risultati[tipo][sesso] : null;
 
   const progressValue =
-    step === "sesso" ? 0
-    : step === 1 ? 12
-    : step === 2 ? 25
-    : step === 3 ? 40
-    : step === 4 ? 55
-    : step === 5 ? 70
-    : step === "q6" ? 85
+    step === "intro" ? 0
+    : step === "sesso" ? 7
+    : step === 1 ? 21
+    : step === 2 ? 35
+    : step === 3 ? 49
+    : step === 4 ? 63
+    : step === 5 ? 77
+    : step === "q6" ? 88
     : 100;
 
   const handleQ = (active: boolean, idx: number) => {
@@ -155,6 +163,7 @@ export default function Quiz() {
           tipo: result?.titolo ?? "",
           score,
           sesso,
+          roma,
           canale: isRef ? "referral" : "ads",
           fonte: "quiz-divanizzato",
         }),
@@ -164,32 +173,76 @@ export default function Quiz() {
     setStep("done");
   };
 
-  // ── SESSO ──────────────────────────────────────────────────────────────────
-  if (step === "sesso") {
+  // \u2500\u2500 INTRO \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  if (step === "intro") {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
         <ProgressBar value={0} />
-        <div className="flex-1 flex flex-col items-center justify-center px-5 text-center">
-          <div className="flex items-center gap-3 mb-8">
-            <img src="/aas-logo.png" alt="Aiutalo a Smettere" className="w-10 h-10" />
-            <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              Aiutalo a Smettere
+        <div className="flex-1 flex flex-col items-center justify-center px-5 max-w-xl mx-auto w-full text-center py-12">
+          <div className="flex items-center gap-3 mb-10">
+            <img src="/aas-logo.png" alt="Aiutalo a Smettere" width={40} height={40} className="w-10 h-10" />
+            <span className="font-mono text-xs uppercase tracking-widest text-gray-400">
+              Wellness Town &middot; Roma Sud
             </span>
           </div>
-          <h1 className="font-display text-6xl sm:text-8xl leading-none mb-3">
-            CHE DIVANIZZATO SEI?
+          <h1 className="font-display text-5xl sm:text-7xl leading-[0.95] mb-5">
+            SEI SEDENTARIO.
+            <br />
+            <span className="text-primary">E LO SAI.</span>
           </h1>
-          <p className="text-ink2 text-lg mb-12">6 domande. Nessun giudizio.</p>
+          <p className="text-gray-600 text-lg leading-relaxed mb-4 max-w-md">
+            Se hai provato ad allenarti &mdash; e hai sempre mollato &mdash; abbiamo costruito qualcosa per te.
+          </p>
+          <p className="text-gray-500 text-base leading-relaxed mb-10 max-w-md">
+            <strong className="text-gray-900">Aiutalo a Smettere</strong> \u00e8 un percorso gratuito
+            di 5 settimane con un trainer dedicato. 30 posti. Nessun abbonamento.
+            Solo l&apos;allenamento, il trainer, e tu.
+          </p>
+          <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-5">
+            Prima di tutto: sei di Roma?
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-sm mx-auto">
+            <button
+              onClick={() => { setRoma(true); setStep("sesso"); }}
+              className="flex-1 h-14 rounded-xl bg-gray-900 text-white font-bold tracking-wider hover:-translate-y-px transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
+            >
+              S\u00ec, sono di Roma
+            </button>
+            <button
+              onClick={() => { setRoma(false); setStep("sesso"); }}
+              className="flex-1 h-14 rounded-xl border-2 border-gray-300 text-gray-700 font-bold tracking-wider hover:border-gray-500 hover:-translate-y-px transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
+            >
+              No, sono altrove
+            </button>
+          </div>
+          <p className="text-gray-400 text-xs mt-5">6 domande &middot; 2 minuti</p>
+        </div>
+      </div>
+    );
+  }
+
+  // \u2500\u2500 SESSO \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
+  if (step === "sesso") {
+    return (
+      <div className="min-h-screen bg-white text-gray-900 flex flex-col">
+        <ProgressBar value={7} />
+        <div className="flex-1 flex flex-col items-center justify-center px-5 text-center">
+          <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-6">
+            Prima di iniziare
+          </p>
+          <h2 className="font-display text-5xl sm:text-6xl leading-none mb-10">
+            CHE DIVANIZZATO SEI?
+          </h2>
           <div className="flex flex-col sm:flex-row gap-4">
             <button
               onClick={() => { setSesso("m"); setStep(1); }}
-              className="h-14 px-10 rounded-md bg-foreground text-background font-bold tracking-wider hover:-translate-y-px transition-transform"
+              className="h-14 px-10 rounded-xl bg-gray-900 text-white font-bold tracking-wider hover:-translate-y-px transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900"
             >
               Sono un uomo
             </button>
             <button
               onClick={() => { setSesso("f"); setStep(1); }}
-              className="h-14 px-10 rounded-md border-2 border-foreground font-bold tracking-wider hover:-translate-y-px transition-transform"
+              className="h-14 px-10 rounded-xl border-2 border-gray-300 text-gray-700 font-bold tracking-wider hover:border-gray-500 hover:-translate-y-px transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400"
             >
               Sono una donna
             </button>
@@ -199,14 +252,14 @@ export default function Quiz() {
     );
   }
 
-  // ── DOMANDE 1–5 ───────────────────────────────────────────────────────────
+  // \u2500\u2500 DOMANDE 1\u20135 \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   if (typeof step === "number" && step >= 1 && step <= 5) {
     const q = domande[step - 1];
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
         <ProgressBar value={progressValue} />
         <div className="flex-1 flex flex-col items-center justify-center px-5 w-full max-w-xl mx-auto text-center">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6">
+          <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-6">
             {step} di 6
           </p>
           <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] mb-10">
@@ -217,7 +270,7 @@ export default function Quiz() {
               <button
                 key={r.label}
                 onClick={() => handleQ(r.active, step - 1)}
-                className="w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white text-gray-900 hover:border-primary hover:bg-primary/5 text-left font-semibold text-base transition-all"
+                className={ANSWER_BTN}
               >
                 {r.label}
               </button>
@@ -228,24 +281,24 @@ export default function Quiz() {
     );
   }
 
-  // ── DOMANDA 6 (intenzione) ────────────────────────────────────────────────
+  // \u2500\u2500 DOMANDA 6 (intenzione) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   if (step === "q6") {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
-        <ProgressBar value={85} />
+        <ProgressBar value={88} />
         <div className="flex-1 flex flex-col items-center justify-center px-5 w-full max-w-xl mx-auto text-center">
-          <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground mb-6">
+          <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-6">
             6 di 6
           </p>
           <h2 className="font-display text-4xl sm:text-5xl leading-[1.05] mb-10">
-            OGNI QUANTO TI DICI "INIZIO LUNEDI"?
+            OGNI QUANTO TI DICI &ldquo;INIZIO LUNED\u00cc&rdquo;?
           </h2>
           <div className="flex flex-col gap-3 w-full">
             {q6Opzioni.map((o) => (
               <button
                 key={o.value}
                 onClick={() => { setQ6Answer(o.value); setStep("result"); }}
-                className="w-full py-5 px-6 rounded-xl border-2 border-gray-200 bg-white text-gray-900 hover:border-primary hover:bg-primary/5 text-left font-semibold text-base transition-all"
+                className={ANSWER_BTN}
               >
                 {o.label}
               </button>
@@ -256,7 +309,7 @@ export default function Quiz() {
     );
   }
 
-  // ── RISULTATO ─────────────────────────────────────────────────────────────
+  // \u2500\u2500 RISULTATO \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   if (step === "result" && result) {
     return (
       <div className="min-h-screen bg-charcoal text-charcoal-foreground flex flex-col">
@@ -272,35 +325,45 @@ export default function Quiz() {
             {result.descrizione}
           </p>
           <div className="w-full border border-charcoal-foreground/15 rounded-2xl p-6 sm:p-8 text-left">
-            <p className="font-display text-3xl leading-none mb-1">C'e speranza.</p>
+            <p className="font-display text-3xl leading-none mb-1">C&apos;\u00e8 speranza.</p>
             <p className="text-charcoal-foreground/60 text-sm mb-6">
               Candidati ad{" "}
-              <strong className="text-charcoal-foreground">Aiutalo a Smettere</strong> —
-              5 settimane, 100% gratuito, Roma Sud.
+              <strong className="text-charcoal-foreground">Aiutalo a Smettere</strong>{" "}
+              &mdash; 5 settimane, 100% gratuito, Roma Sud.
             </p>
             <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+              <label className="sr-only" htmlFor="quiz-nome">Nome</label>
               <input
+                id="quiz-nome"
+                name="nome"
                 type="text"
-                placeholder="Il tuo nome"
+                autoComplete="given-name"
+                placeholder="Il tuo nome\u2026"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 required
-                className="w-full h-12 px-4 rounded-lg bg-charcoal-foreground/10 border border-charcoal-foreground/20 text-charcoal-foreground placeholder:text-charcoal-foreground/40 focus:outline-none focus:border-primary"
+                className="w-full h-12 px-4 rounded-lg bg-charcoal-foreground/10 border border-charcoal-foreground/20 text-charcoal-foreground placeholder:text-charcoal-foreground/40 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
               />
+              <label className="sr-only" htmlFor="quiz-telefono">Telefono</label>
               <input
+                id="quiz-telefono"
+                name="telefono"
                 type="tel"
-                placeholder="Telefono (ti scriviamo su WhatsApp)"
+                inputMode="tel"
+                autoComplete="tel"
+                placeholder="Telefono (ti scriviamo su WhatsApp)\u2026"
                 value={telefono}
                 onChange={(e) => setTelefono(e.target.value)}
                 required
-                className="w-full h-12 px-4 rounded-lg bg-charcoal-foreground/10 border border-charcoal-foreground/20 text-charcoal-foreground placeholder:text-charcoal-foreground/40 focus:outline-none focus:border-primary"
+                className="w-full h-12 px-4 rounded-lg bg-charcoal-foreground/10 border border-charcoal-foreground/20 text-charcoal-foreground placeholder:text-charcoal-foreground/40 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
               />
               <button
                 type="submit"
                 disabled={submitting}
-                className="h-12 rounded-lg bg-primary text-primary-foreground font-bold tracking-wider hover:-translate-y-px transition-transform disabled:opacity-50"
+                className="h-14 rounded-xl bg-primary text-primary-foreground font-bold tracking-wider hover:-translate-y-px active:scale-[0.99] transition-transform disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+                style={{ boxShadow: "0 8px 24px -8px hsl(178 52% 43% / 0.55)" }}
               >
-                {submitting ? "..." : "CANDIDATI ORA \u2192"}
+                {submitting ? "Invio in corso\u2026" : "CANDIDATI ORA \u2192"}
               </button>
             </form>
           </div>
@@ -309,11 +372,11 @@ export default function Quiz() {
     );
   }
 
-  // ── DONE ──────────────────────────────────────────────────────────────────
+  // \u2500\u2500 DONE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500
   if (step === "done") {
     return (
       <div className="min-h-screen bg-charcoal text-charcoal-foreground flex flex-col items-center justify-center px-5 text-center">
-        <img src="/aas-logo.png" alt="AAS" className="w-16 h-16 mb-8 opacity-80" />
+        <img src="/aas-logo.png" alt="Aiutalo a Smettere" width={64} height={64} className="w-16 h-16 mb-8 opacity-80" />
         <p className="font-mono text-xs uppercase tracking-widest text-charcoal-foreground/50 mb-4">
           Fatto.
         </p>
@@ -322,12 +385,12 @@ export default function Quiz() {
         </h1>
         <p className="text-charcoal-foreground/70 mb-10 max-w-sm leading-relaxed">
           {isRef
-            ? "Il tuo amico ti ha gia messo sulla strada giusta. Ti scriviamo su WhatsApp entro 24 ore."
+            ? "Il tuo amico ti ha gi\u00e0 messo sulla strada giusta. Ti scriviamo su WhatsApp entro 24 ore."
             : "Ti scriviamo su WhatsApp entro 24 ore. Nel frattempo, scopri come funziona il programma."}
         </p>
         <a
           href="/"
-          className="h-12 px-8 inline-flex items-center rounded-lg border border-charcoal-foreground/20 font-bold tracking-wider hover:-translate-y-px transition-transform"
+          className="h-12 px-8 inline-flex items-center rounded-xl border border-charcoal-foreground/20 font-bold tracking-wider hover:-translate-y-px transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-foreground/40"
         >
           SCOPRI IL PROGRAMMA \u2192
         </a>
