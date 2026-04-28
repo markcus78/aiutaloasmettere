@@ -12,7 +12,7 @@ import StickyBar from "@/components/StickyBar";
 const POSTI_RIMASTI = 12;
 
 const navLinks = [
-  { href: "#cosa", label: "Cos\u2019\u00e8" },
+  { href: "#cosa", label: "Cos’è" },
   { href: "#funziona", label: "Come funziona" },
   { href: "#regaliamo", label: "Cosa ricevi" },
   { href: "#testimonianze", label: "Storie" },
