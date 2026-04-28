@@ -1,17 +1,34 @@
+import { Fragment } from "react";
+
 const POSTI_RIMASTI = 12;
 const POSTI_TOTALI = 30;
 const FILL_PCT = Math.round(((POSTI_TOTALI - POSTI_RIMASTI) / POSTI_TOTALI) * 100);
 
 const tickerItems = [
-  "5 SETTIMANE", "12 ALLENAMENTI", "1 TRAINER DEDICATO", "0\u20AC", "30 POSTI", "NESSUNA SCUSA",
+  "5 SETTIMANE",
+  "12 ALLENAMENTI",
+  "1 TRAINER DEDICATO",
+  "0\u20AC",
+  "30 POSTI",
+  "NESSUNA SCUSA",
 ];
 
 const scrollToForm = () =>
   document.getElementById("candidati")?.scrollIntoView({ behavior: "smooth" });
 
+const TickerRow = ({ hidden }: { hidden?: boolean }) => (
+  <div className="flex gap-12 items-center shrink-0" aria-hidden={hidden}>
+    {tickerItems.map((item) => (
+      <Fragment key={item}>
+        <span className="font-display text-2xl tracking-wider">{item}</span>
+        <span className="text-primary font-display text-2xl">&middot;</span>
+      </Fragment>
+    ))}
+  </div>
+);
+
 const Hero = () => (
   <>
-    {/* Hero section */}
     <section className="relative paper-grain border-b border-border overflow-hidden bg-background">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 pb-20 sm:pb-24 grid grid-cols-12 gap-8">
         {/* Left */}
@@ -49,7 +66,7 @@ const Hero = () => (
             <br className="hidden sm:block" />
             <span className="strike-out text-muted-foreground">38 volte.</span>
             <br />
-            QUESTA <span className="text-primary">È LA 39.</span>
+            QUESTA <span className="text-primary">\u00c8 LA 39.</span>
           </h1>
 
           <p className="text-lg sm:text-2xl text-ink2 max-w-2xl leading-relaxed mb-8">
@@ -83,7 +100,7 @@ const Hero = () => (
                 </span>
               </div>
               <div className="text-[13px] leading-tight">
-                <p className="font-bold">Già 18 candidati</p>
+                <p className="font-bold">Gi\u00e0 18 candidati</p>
                 <p className="text-muted-foreground">in 4 giorni &middot; max 30 posti</p>
               </div>
             </div>
@@ -130,7 +147,10 @@ const Hero = () => (
                   Hero &middot; 4:5
                 </p>
                 <p className="font-mono text-[13px] text-foreground/60 leading-relaxed">
-                  [ foto verticale: persona<br />che esce da spogliatoio,<br />
+                  [ foto verticale: persona
+                  <br />
+                  che esce da spogliatoio,
+                  <br />
                   asciugamano sul collo ]
                 </p>
               </div>
@@ -160,18 +180,8 @@ const Hero = () => (
       {/* Ticker */}
       <div className="border-t border-b border-border bg-card overflow-hidden">
         <div className="ticker-track flex gap-12 py-4 whitespace-nowrap">
-          {[0, 1].map((i) => (
-            <div key={i} className="flex gap-12 items-center shrink-0" aria-hidden={i === 1}>
-              {tickerItems.map((item) => (
-                <>
-                  <span key={item} className="font-display text-2xl tracking-wider">
-                    {item}
-                  </span>
-                  <span className="text-primary font-display text-2xl">&middot;</span>
-                </>
-              ))}
-            </div>
-          ))}
+          <TickerRow />
+          <TickerRow hidden />
         </div>
       </div>
     </section>
