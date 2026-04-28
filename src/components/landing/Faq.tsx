@@ -1,27 +1,27 @@
 const faqs = [
   {
-    q: "\u00c8 davvero gratis? Dov\u2019\u00e8 il trucco?",
-    a: "Davvero. Non chiediamo carta di credito, non hai un abbonamento dormiente, non ti chiamiamo per \u201cricordarti l\u2019offerta\u201d. Lo facciamo perch\u00e9 chi finisce le 5 settimane spesso decide da solo di restare. \u00c8 pubblicit\u00e0 onesta, non un\u2019esca.",
+    q: "È davvero gratis? Dov’è il trucco?",
+    a: "Davvero. Non chiediamo carta di credito, non hai un abbonamento dormiente, non ti chiamiamo per “ricordarti l’offerta”. Lo facciamo perché chi finisce le 5 settimane spesso decide da solo di restare. È pubblicità onesta, non un’esca.",
   },
   {
     q: "Sono fuori forma. Troppo?",
-    a: "No. Il percorso \u00e8 costruito per chi parte \u2014 non per chi \u00e8 gi\u00e0 allenato. Il trainer adatta tutto al tuo punto di partenza, e il primo allenamento \u00e8 di attivazione, non di prestazione.",
+    a: "No. Il percorso è costruito per chi parte — non per chi è già allenato. Il trainer adatta tutto al tuo punto di partenza, e il primo allenamento è di attivazione, non di prestazione.",
   },
   {
     q: "Quante volte alla settimana devo venire?",
-    a: "Pianifichiamo 2\u20133 sessioni a settimana per 5 settimane (12 allenamenti totali). La regola \u00e8 una sola: niente due assenze di fila. Le date le chiudi tu con il tuo trainer.",
+    a: "Pianifichiamo 2–3 sessioni a settimana per 5 settimane (12 allenamenti totali). La regola è una sola: niente due assenze di fila. Le date le chiudi tu con il tuo trainer.",
   },
   {
     q: "Cosa succede dopo le 5 settimane?",
-    a: "Decidi tu. Puoi restare con un abbonamento di Wellness Town \u2014 i Rookie hanno una condizione dedicata, ma senza obbligo. Oppure prendi il piano e lo continui altrove. O non lo continui. \u00c8 legittimo.",
+    a: "Decidi tu. Puoi restare con un abbonamento di Wellness Town — i Rookie hanno una condizione dedicata, ma senza obbligo. Oppure prendi il piano e lo continui altrove. O non lo continui. È legittimo.",
   },
   {
-    q: "Perch\u00e9 solo 30 posti?",
-    a: "Perch\u00e9 ognuno ha un trainer che gli scrive di nome. Oltre i 30, smette di essere un percorso e diventa un corso di gruppo. Non \u00e8 quello che facciamo qui.",
+    q: "Perché solo 30 posti?",
+    a: "Perché ognuno ha un trainer che gli scrive di nome. Oltre i 30, smette di essere un percorso e diventa un corso di gruppo. Non è quello che facciamo qui.",
   },
   {
     q: "Posso candidarmi se non vivo a Roma Sud?",
-    a: "S\u00ec, ma sii realista. Il percorso funziona perch\u00e9 \u00e8 fisico \u2014 devi venire qui, in Via Giangiacomo 55. Se ci metti 50 minuti, salterai. Se ce ne metti 20, ce la fai.",
+    a: "Sì, ma sii realista. Il percorso funziona perché è fisico — devi venire qui, in Via Giangiacomo 55. Se ci metti 50 minuti, salterai. Se ce ne metti 20, ce la fai.",
   },
 ];
 
