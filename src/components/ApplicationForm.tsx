@@ -147,7 +147,7 @@ const ApplicationForm = () => {
         />
         <Label htmlFor="privacy" className="text-sm font-normal leading-relaxed cursor-pointer">
           Ho letto e accetto la{" "}
-          <a href="#" className="underline font-semibold">Privacy Policy</a>{" "}
+          <a href="https://wellnesstown.it/privacy" target="_blank" rel="noopener noreferrer" className="underline font-semibold">Privacy Policy</a>{" "}
           <span className="text-destructive">*</span>
         </Label>
       </div>
