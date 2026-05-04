@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { z } from "zod";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
@@ -48,6 +49,9 @@ type ApplicationFormProps = {
 };
 
 const ApplicationForm = ({ pagina, extraPayload }: ApplicationFormProps) => {
+  const [searchParams] = useSearchParams();
+  const isRef = searchParams.get("ref") === "friend";
+
   const [values, setValues] = useState<FormValues>({
     nome: "",
     cognome: "",
@@ -92,6 +96,7 @@ const ApplicationForm = ({ pagina, extraPayload }: ApplicationFormProps) => {
           privacy: parsed.data.privacy,
           conferma: parsed.data.conferma,
           pagina_provenienza: pagina,
+          canale: isRef ? "referral" : "ads",
           ...(extraPayload ?? {}),
         }),
       });
