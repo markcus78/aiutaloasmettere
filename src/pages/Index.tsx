@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import Hero from "@/components/landing/Hero";
 import WhatItIs from "@/components/landing/WhatItIs";
 import Filter from "@/components/landing/Filter";
@@ -23,8 +25,42 @@ const scrollToForm = () =>
   document.getElementById("candidati")?.scrollIntoView({ behavior: "smooth" });
 
 const Index = () => {
+  const [searchParams] = useSearchParams();
+  const [showLeadBanner, setShowLeadBanner] = useState(
+    searchParams.get("lead") === "ok"
+  );
+
+  const closeLeadBanner = () => {
+    setShowLeadBanner(false);
+    if (window.history.replaceState) {
+      window.history.replaceState(null, "", window.location.pathname);
+    }
+  };
+
   return (
     <div className="bg-background text-foreground">
+      {/* Lead confirmation banner */}
+      {showLeadBanner && (
+        <div className="bg-primary text-primary-foreground">
+          <div className="max-w-7xl mx-auto px-5 sm:px-8 py-3 flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3 text-sm sm:text-base">
+              <span className="font-display text-xl leading-none" aria-hidden>✓</span>
+              <p className="leading-snug">
+                <strong className="font-bold uppercase tracking-wide">Candidatura ricevuta.</strong>{" "}
+                Ti scriviamo su WhatsApp entro 24 ore. Nel frattempo, scopri come funziona il programma.
+              </p>
+            </div>
+            <button
+              onClick={closeLeadBanner}
+              aria-label="Chiudi"
+              className="shrink-0 w-8 h-8 flex items-center justify-center rounded hover:bg-primary-foreground/15 transition-colors text-lg leading-none"
+            >
+              &times;
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Announcement bar */}
       <div className="bg-charcoal text-charcoal-foreground">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-10 flex items-center justify-between gap-4 text-[12px] sm:text-[13px]">

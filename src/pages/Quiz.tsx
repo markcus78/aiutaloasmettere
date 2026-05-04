@@ -6,7 +6,7 @@ const WEBHOOK = "https://hooks.zapier.com/hooks/catch/1842375/uvdpto7/";
 type Sesso = "m" | "f";
 type Q6Answer = "lunedi" | "non-ci-penso" | "mi-muovo";
 type TipoBase = "cronico" | "pentito" | "falso";
-type Step = "intro" | "sesso" | 1 | 2 | 3 | 4 | 5 | "q6" | "result" | "done";
+type Step = "intro" | "sesso" | 1 | 2 | 3 | 4 | 5 | "q6" | "result";
 
 const domande = [
   {
@@ -114,6 +114,28 @@ function ProgressBar({ value, dark }: { value: number; dark?: boolean }) {
   );
 }
 
+function QuizHeader() {
+  return (
+    <div className="px-5 sm:px-8 py-4 border-b border-gray-100 flex items-center gap-3">
+      <img
+        src="/aas-logo.png"
+        alt="Aiutalo a Smettere"
+        width={36}
+        height={36}
+        className="w-9 h-9 shrink-0"
+      />
+      <p className="text-[11px] sm:text-xs leading-snug text-gray-500">
+        <strong className="text-gray-900 font-bold uppercase tracking-wide">
+          Aiutalo a Smettere
+        </strong>
+        <span className="hidden sm:inline">{" "}&middot;{" "}</span>
+        <br className="sm:hidden" />
+        il programma gratuito di Wellness Town finalizzato a trasformare l&apos;allenamento in abitudine
+      </p>
+    </div>
+  );
+}
+
 export default function Quiz() {
   const [searchParams] = useSearchParams();
   const isRef = searchParams.get("ref") === "friend";
@@ -169,8 +191,7 @@ export default function Quiz() {
         }),
       });
     } catch (_) {}
-    setSubmitting(false);
-    setStep("done");
+    window.location.assign("/?lead=ok");
   };
 
   // ── INTRO ───────────────────────────────────────────────────────────────────────────
@@ -226,6 +247,7 @@ export default function Quiz() {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
         <ProgressBar value={7} />
+        <QuizHeader />
         <div className="flex-1 flex flex-col items-center justify-center px-5 text-center">
           <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-6">
             Prima di iniziare
@@ -258,6 +280,7 @@ export default function Quiz() {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
         <ProgressBar value={progressValue} />
+        <QuizHeader />
         <div className="flex-1 flex flex-col items-center justify-center px-5 w-full max-w-xl mx-auto text-center">
           <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-6">
             {step} di 6
@@ -286,6 +309,7 @@ export default function Quiz() {
     return (
       <div className="min-h-screen bg-white text-gray-900 flex flex-col">
         <ProgressBar value={88} />
+        <QuizHeader />
         <div className="flex-1 flex flex-col items-center justify-center px-5 w-full max-w-xl mx-auto text-center">
           <p className="font-mono text-xs uppercase tracking-widest text-gray-400 mb-6">
             6 di 6
@@ -368,32 +392,6 @@ export default function Quiz() {
             </form>
           </div>
         </div>
-      </div>
-    );
-  }
-
-  // ── DONE ────────────────────────────────────────────────────────────────────────────────
-  if (step === "done") {
-    return (
-      <div className="min-h-screen bg-charcoal text-charcoal-foreground flex flex-col items-center justify-center px-5 text-center">
-        <img src="/aas-logo.png" alt="Aiutalo a Smettere" width={64} height={64} className="w-16 h-16 mb-8 opacity-80" />
-        <p className="font-mono text-xs uppercase tracking-widest text-charcoal-foreground/50 mb-4">
-          Fatto.
-        </p>
-        <h1 className="font-display text-6xl sm:text-7xl text-primary leading-none mb-4">
-          CI SENTIAMO.
-        </h1>
-        <p className="text-charcoal-foreground/70 mb-10 max-w-sm leading-relaxed">
-          {isRef
-            ? "Il tuo amico ti ha già messo sulla strada giusta. Ti scriviamo su WhatsApp entro 24 ore."
-            : "Ti scriviamo su WhatsApp entro 24 ore. Nel frattempo, scopri come funziona il programma."}
-        </p>
-        <a
-          href="/"
-          className="h-12 px-8 inline-flex items-center rounded-xl border border-charcoal-foreground/20 font-bold tracking-wider hover:-translate-y-px transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-charcoal-foreground/40"
-        >
-          SCOPRI IL PROGRAMMA →
-        </a>
       </div>
     );
   }
