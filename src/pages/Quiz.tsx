@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-
-const WEBHOOK = "https://hooks.zapier.com/hooks/catch/1842375/uvdpto7/";
+import ApplicationForm from "@/components/ApplicationForm";
 
 type Sesso = "m" | "f";
 type Q6Answer = "lunedi" | "non-ci-penso" | "mi-muovo";
@@ -145,9 +144,6 @@ export default function Quiz() {
   const [roma, setRoma] = useState<boolean | null>(null);
   const [answers, setAnswers] = useState<boolean[]>([]);
   const [q6Answer, setQ6Answer] = useState<Q6Answer | null>(null);
-  const [nome, setNome] = useState("");
-  const [telefono, setTelefono] = useState("");
-  const [submitting, setSubmitting] = useState(false);
 
   const score = answers.filter(Boolean).length;
   const tipo = q6Answer ? getType(score, q6Answer) : null;
@@ -170,28 +166,6 @@ export default function Quiz() {
     setAnswers(next);
     if (idx < 4) setStep((idx + 2) as Step);
     else setStep("q6");
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitting(true);
-    try {
-      await fetch(WEBHOOK, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          nome,
-          telefono,
-          tipo: result?.titolo ?? "",
-          score,
-          sesso,
-          roma,
-          canale: isRef ? "referral" : "ads",
-          fonte: "quiz-divanizzato",
-        }),
-      });
-    } catch (_) {}
-    window.location.assign("/?lead=ok");
   };
 
   // ── INTRO ───────────────────────────────────────────────────────────────────────────
@@ -338,58 +312,36 @@ export default function Quiz() {
     return (
       <div className="min-h-screen bg-charcoal text-charcoal-foreground flex flex-col">
         <ProgressBar value={100} dark />
-        <div className="flex-1 flex flex-col items-center justify-center px-5 w-full max-w-lg mx-auto text-center py-16">
-          <p className="font-mono text-xs uppercase tracking-widest text-charcoal-foreground/50 mb-4">
-            Il tuo risultato
-          </p>
-          <h1 className="font-display text-7xl sm:text-8xl text-primary leading-none mb-6">
-            {result.titolo.toUpperCase()}
-          </h1>
-          <p className="text-lg leading-relaxed text-charcoal-foreground/80 mb-12 max-w-sm">
-            {result.descrizione}
-          </p>
-          <div className="w-full border border-charcoal-foreground/15 rounded-2xl p-6 sm:p-8 text-left">
+        <div className="flex-1 flex flex-col items-center justify-center px-5 w-full max-w-xl mx-auto py-16">
+          <div className="text-center">
+            <p className="font-mono text-xs uppercase tracking-widest text-charcoal-foreground/50 mb-4">
+              Il tuo risultato
+            </p>
+            <h1 className="font-display text-7xl sm:text-8xl text-primary leading-none mb-6">
+              {result.titolo.toUpperCase()}
+            </h1>
+            <p className="text-lg leading-relaxed text-charcoal-foreground/80 mb-12 max-w-sm mx-auto">
+              {result.descrizione}
+            </p>
+          </div>
+          <div className="w-full bg-cream text-charcoal rounded-2xl p-6 sm:p-8">
             <p className="font-display text-3xl leading-none mb-1">C&apos;è speranza.</p>
-            <p className="text-charcoal-foreground/60 text-sm mb-6">
+            <p className="text-muted-foreground text-sm mb-6">
               Candidati ad{" "}
-              <strong className="text-charcoal-foreground">Aiutalo a Smettere</strong>{" "}
+              <strong className="text-charcoal">Aiutalo a Smettere</strong>{" "}
               &mdash; 5 settimane, 100% gratuito, Roma Sud.
             </p>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-              <label className="sr-only" htmlFor="quiz-nome">Nome</label>
-              <input
-                id="quiz-nome"
-                name="nome"
-                type="text"
-                autoComplete="given-name"
-                placeholder="Il tuo nome…"
-                value={nome}
-                onChange={(e) => setNome(e.target.value)}
-                required
-                className="w-full h-12 px-4 rounded-lg bg-charcoal-foreground/10 border border-charcoal-foreground/20 text-charcoal-foreground placeholder:text-charcoal-foreground/40 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
-              />
-              <label className="sr-only" htmlFor="quiz-telefono">Telefono</label>
-              <input
-                id="quiz-telefono"
-                name="telefono"
-                type="tel"
-                inputMode="tel"
-                autoComplete="tel"
-                placeholder="Telefono (ti scriviamo su WhatsApp)…"
-                value={telefono}
-                onChange={(e) => setTelefono(e.target.value)}
-                required
-                className="w-full h-12 px-4 rounded-lg bg-charcoal-foreground/10 border border-charcoal-foreground/20 text-charcoal-foreground placeholder:text-charcoal-foreground/40 focus-visible:outline-none focus-visible:border-primary focus-visible:ring-1 focus-visible:ring-primary"
-              />
-              <button
-                type="submit"
-                disabled={submitting}
-                className="h-14 rounded-xl bg-primary text-primary-foreground font-bold tracking-wider hover:-translate-y-px active:scale-[0.99] transition-transform disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
-                style={{ boxShadow: "0 8px 24px -8px hsl(178 52% 43% / 0.55)" }}
-              >
-                {submitting ? "Invio in corso…" : "CANDIDATI ORA →"}
-              </button>
-            </form>
+            <ApplicationForm
+              pagina="quiz"
+              extraPayload={{
+                tipo: result.titolo,
+                score,
+                sesso,
+                roma,
+                canale: isRef ? "referral" : "ads",
+                fonte: "quiz-divanizzato",
+              }}
+            />
           </div>
         </div>
       </div>

@@ -6,10 +6,10 @@ import Value from "@/components/landing/Value";
 import Testimonials from "@/components/landing/Testimonials";
 import About from "@/components/landing/About";
 import Faq from "@/components/landing/Faq";
-import FormSection from "@/components/landing/FormSection";
-import StickyBar from "@/components/StickyBar";
 
-const POSTI_RIMASTI = 12;
+// ⚠ Nota operativa per Claude: questa pagina è la thank-you del quiz/form.
+// È una copia ridotta di Index.tsx senza FormSection, senza StickyBar e senza CTA "Candidati".
+// Quando applichi modifiche di copy/struttura/sezioni a Index.tsx, replicale qui — esclusi form e CTA.
 
 const navLinks = [
   { href: "#cosa", label: "Cos’è" },
@@ -19,37 +19,39 @@ const navLinks = [
   { href: "#faq", label: "FAQ" },
 ];
 
-const scrollToForm = () =>
-  document.getElementById("candidati")?.scrollIntoView({ behavior: "smooth" });
-
-const Index = () => {
+const Grazie = () => {
   return (
     <div className="bg-background text-foreground">
+      {/* Confirmation banner */}
+      <div className="bg-primary text-primary-foreground">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-3 flex items-center gap-3 text-sm sm:text-base">
+          <span className="font-display text-xl leading-none" aria-hidden>✓</span>
+          <p className="leading-snug">
+            <strong className="font-bold uppercase tracking-wide">Candidatura ricevuta.</strong>{" "}
+            Ti scriviamo su WhatsApp entro 24 ore. Nel frattempo, scopri come funziona il programma.
+          </p>
+        </div>
+      </div>
+
       {/* Announcement bar */}
       <div className="bg-charcoal text-charcoal-foreground">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-10 flex items-center justify-between gap-4 text-[12px] sm:text-[13px]">
           <div className="flex items-center gap-2 font-mono uppercase tracking-widest">
             <span className="w-1.5 h-1.5 rounded-full bg-warn live-dot" />
-            <span className="opacity-90">Iscrizioni aperte fino a esaurimento</span>
+            <span className="opacity-90">Ti chiamiamo entro 24 ore</span>
           </div>
           <div className="hidden sm:flex items-center gap-5 font-mono uppercase tracking-widest opacity-80">
             <span>Roma &middot; Ardeatino</span>
             <span>&middot;</span>
             <span>Sabato 23 Maggio 2026</span>
           </div>
-          <button
-            onClick={scrollToForm}
-            className="font-mono uppercase tracking-widest underline underline-offset-4 decoration-primary hover:text-primary transition-colors text-charcoal-foreground"
-          >
-            Candidati &rarr;
-          </button>
         </div>
       </div>
 
-      {/* Sticky header */}
+      {/* Sticky header (no Candidati CTA) */}
       <header className="sticky top-0 z-40 backdrop-blur bg-background/85 border-b border-border">
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3">
             <img src="/logo-wt.png" alt="Wellness Town" className="h-8 w-auto" />
           </a>
           <nav className="hidden md:flex items-center gap-7 text-sm font-semibold text-foreground/70">
@@ -59,17 +61,11 @@ const Index = () => {
               </a>
             ))}
           </nav>
-          <button
-            onClick={scrollToForm}
-            className="bg-primary text-primary-foreground px-5 h-10 inline-flex items-center rounded-md text-[13px] font-bold tracking-wide hover:bg-primary/90 transition-colors"
-          >
-            CANDIDATI
-          </button>
         </div>
       </header>
 
       <main>
-        <Hero />
+        <Hero hideCTA />
         <WhatItIs />
         <Filter />
         <Phases />
@@ -77,7 +73,6 @@ const Index = () => {
         <Testimonials />
         <About />
         <Faq />
-        <FormSection />
       </main>
 
       {/* Footer */}
@@ -136,11 +131,8 @@ const Index = () => {
           </div>
         </div>
       </footer>
-
-      <StickyBar postiRimasti={POSTI_RIMASTI} />
-      <div className="h-20" aria-hidden />
     </div>
   );
 };
 
-export default Index;
+export default Grazie;

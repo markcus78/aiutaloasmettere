@@ -27,6 +27,7 @@ const schema = z.object({
   email: z.string().trim().email("Email non valida").max(255),
   rimando: z.enum(["<6m", "1y", "some-y", "forever"]).optional(),
   privacy: z.literal(true, { errorMap: () => ({ message: "Devi accettare la Privacy Policy" }) }),
+  conferma: z.literal(true, { errorMap: () => ({ message: "Devi confermare di voler essere ricontattato/a" }) }),
 });
 
 type FormValues = {
@@ -36,11 +37,17 @@ type FormValues = {
   email: string;
   rimando: "" | "<6m" | "1y" | "some-y" | "forever";
   privacy: boolean;
+  conferma: boolean;
 };
 
 type FieldErrors = Partial<Record<keyof z.infer<typeof schema>, string>>;
 
-const ApplicationForm = () => {
+type ApplicationFormProps = {
+  pagina: string;
+  extraPayload?: Record<string, unknown>;
+};
+
+const ApplicationForm = ({ pagina, extraPayload }: ApplicationFormProps) => {
   const [values, setValues] = useState<FormValues>({
     nome: "",
     cognome: "",
@@ -48,6 +55,7 @@ const ApplicationForm = () => {
     email: "",
     rimando: "",
     privacy: false,
+    conferma: false,
   });
   const [errors, setErrors] = useState<FieldErrors>({});
   const [submitting, setSubmitting] = useState(false);
@@ -74,23 +82,23 @@ const ApplicationForm = () => {
     try {
       const res = await fetch(WEBHOOK_URL, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "text/plain;charset=UTF-8" },
         body: JSON.stringify({
           nome: parsed.data.nome ?? "",
           cognome: parsed.data.cognome ?? "",
           telefono: parsed.data.telefono,
           email: parsed.data.email,
           rimando: parsed.data.rimando ?? "",
+          privacy: parsed.data.privacy,
+          conferma: parsed.data.conferma,
+          pagina_provenienza: pagina,
+          ...(extraPayload ?? {}),
         }),
       });
       if (!res.ok) throw new Error("Errore di rete");
-      toast.success("Candidatura inviata!", {
-        description: "Ti chiamiamo noi entro poche ore.",
-      });
-      setValues({ nome: "", cognome: "", telefono: "", email: "", rimando: "", privacy: false });
+      window.location.assign("/grazie");
     } catch {
       toast.error("Qualcosa è andato storto. Riprova o chiamaci direttamente.");
-    } finally {
       setSubmitting(false);
     }
   };
@@ -196,6 +204,21 @@ const ApplicationForm = () => {
         </Label>
       </div>
       {errors.privacy && <p className="text-destructive text-sm -mt-3">{errors.privacy}</p>}
+
+      <div className="flex items-start gap-3">
+        <Checkbox
+          id="conferma"
+          checked={values.conferma}
+          onCheckedChange={(c) => update("conferma", c === true)}
+          className="mt-1"
+        />
+        <Label htmlFor="conferma" className="text-sm font-normal leading-relaxed cursor-pointer">
+          Confermo di voler essere ricontattato/a per il programma{" "}
+          <strong>Aiutalo a Smettere</strong> via WhatsApp ed email{" "}
+          <span className="text-cross">*</span>
+        </Label>
+      </div>
+      {errors.conferma && <p className="text-destructive text-sm -mt-3">{errors.conferma}</p>}
 
       <Button
         type="submit"

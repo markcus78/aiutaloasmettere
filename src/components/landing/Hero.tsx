@@ -27,7 +27,9 @@ const TickerRow = ({ hidden }: { hidden?: boolean }) => (
   </div>
 );
 
-const Hero = () => (
+type HeroProps = { hideCTA?: boolean };
+
+const Hero = ({ hideCTA = false }: HeroProps) => (
   <>
     <section className="relative paper-grain border-b border-border overflow-hidden bg-background">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-12 sm:pt-16 pb-20 sm:pb-24 grid grid-cols-12 gap-8">
@@ -77,16 +79,18 @@ const Hero = () => (
           </p>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 mb-10">
-            <button
-              onClick={scrollToForm}
-              className="h-14 px-8 inline-flex items-center rounded-md bg-primary text-primary-foreground text-sm font-bold tracking-wider hover:-translate-y-px transition-transform"
-              style={{
-                boxShadow:
-                  "0 1px 0 hsl(0 0% 0% / 0.04), 0 8px 24px -8px hsl(178 52% 43% / 0.55)",
-              }}
-            >
-              CANDIDATI ORA &nbsp;&rarr;
-            </button>
+            {!hideCTA && (
+              <button
+                onClick={scrollToForm}
+                className="h-14 px-8 inline-flex items-center rounded-md bg-primary text-primary-foreground text-sm font-bold tracking-wider hover:-translate-y-px transition-transform"
+                style={{
+                  boxShadow:
+                    "0 1px 0 hsl(0 0% 0% / 0.04), 0 8px 24px -8px hsl(178 52% 43% / 0.55)",
+                }}
+              >
+                CANDIDATI ORA &nbsp;&rarr;
+              </button>
+            )}
             <div className="flex items-center gap-3">
               <div className="flex -space-x-2">
                 <span className="w-9 h-9 rounded-full bg-primary/20 border-2 border-background flex items-center justify-center font-bold text-[13px] text-primary">

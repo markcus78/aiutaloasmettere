@@ -29,7 +29,7 @@ const FormSection = () => (
       </div>
 
       <div className="bg-cream text-charcoal rounded-2xl p-6 sm:p-10">
-        <ApplicationForm />
+        <ApplicationForm pagina="landing" />
       </div>
 
       {/* Trust strip */}
