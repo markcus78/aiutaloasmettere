@@ -96,6 +96,9 @@ const ApplicationForm = ({ pagina, extraPayload }: ApplicationFormProps) => {
         }),
       });
       if (!res.ok) throw new Error("Errore di rete");
+      // Meta Pixel — traccia conversione Lead prima del redirect
+      const fbq = (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq;
+      fbq?.("track", "Lead", { content_name: pagina });
       window.location.assign("/grazie");
     } catch {
       toast.error("Qualcosa è andato storto. Riprova o chiamaci direttamente.");
