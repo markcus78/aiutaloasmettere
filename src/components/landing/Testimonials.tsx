@@ -1,93 +1,87 @@
-const testimonials = [
+const pillars = [
   {
-    img: "/testimonial-marco.jpg",
-    imgAlt: "Marco, 41 anni",
-    quote: "“Ho cominciato 14 volte negli ultimi 10 anni. È la prima che continuo dopo le 5 settimane.”",
-    name: "Marco · 41",
-    edition: "Edizione Settembre 2025 · oggi va 3 volte a settimana",
+    label: "01 / Il trainer",
+    title: "Un trainer\ndedicato.",
+    body:
+      "Non un istruttore di sala. Un trainer che costruisce il tuo programma su misura, ti chiama se non vieni, ti chiede com'è andata. Senza giudizio, con metodo.",
     dark: false,
   },
   {
-    img: "/testimonial-giulia.jpg",
-    imgAlt: "Giulia, 33 anni",
-    quote: "“Pensavo di essere il problema. Era il ‘da solo’ il problema.”",
-    name: "Giulia · 33",
-    edition: "Edizione Febbraio 2026",
+    label: "02 / Il sabato collettivo",
+    title: "Si parte\ninsieme.",
+    body:
+      "Il 23 maggio si comincia tutti lo stesso giorno. Non sei l'unico nuovo, non sei sotto giudizio: sei uno tra 30 che cominciano insieme. Il \"primo giorno\" da soli non esiste.",
     dark: true,
   },
   {
-    img: "/testimonial-andrea.jpg",
-    imgAlt: "Andrea, 52 anni",
-    quote: "“Mi serviva qualcuno che si arrabbiasse se non venivo. Ho trovato Stefano.”",
-    name: "Andrea · 52",
-    edition: "Edizione Settembre 2025",
+    label: "03 / Le 5 settimane",
+    title: "Il tempo\nche serve.",
+    body:
+      "Abbastanza lungo per costruire un'abitudine, abbastanza corto per non spaventare. Alla fine, andare in palestra non sarà più una decisione. Sarà quello che fai il martedì sera.",
     dark: false,
   },
 ];
 
 const stats = [
-  { value: "87%", label: "dei Rookie continua dopo le 5 settimane" },
-  { value: "11/12", label: "presenza media agli allenamenti" },
+  { value: "30", label: "posti per la prima edizione" },
+  { value: "12", label: "allenamenti pianificati nel percorso" },
   { value: "2003", label: "anno di apertura di Wellness Town" },
   { value: "31.574", label: "persone hanno scelto Wellness Town" },
 ];
 
 const Testimonials = () => (
   <section
-    id="testimonianze"
+    id="metodo"
     className="px-5 sm:px-8 py-24 sm:py-32 border-b border-border"
   >
     <div className="max-w-7xl mx-auto">
       <div className="grid grid-cols-12 gap-8 mb-12 items-end">
         <div className="col-span-12 md:col-span-7">
-          <p className="sec-num mb-3">06 / Storie vere</p>
+          <p className="sec-num mb-3">06 / Perché funziona</p>
           <h2 className="font-display text-5xl sm:text-7xl leading-[0.95]">
-            Hanno smesso
+            Il problema non è
             <br />
-            di rimandare.
+            la motivazione.{" "}
+            <span className="text-primary">È il &ldquo;da solo&rdquo;.</span>
           </h2>
         </div>
         <div className="col-span-12 md:col-span-5">
           <p className="text-ink2 text-lg leading-relaxed">
-            Ex Rookie delle prime due edizioni. Foto vere, parole loro.
+            Le persone sedentarie non sono pigre, non sono deboli. Quello che
+            gli manca non è la voglia. È qualcuno che si arrabbi, in modo
+            affettuoso, se non vengono. Per questo abbiamo costruito Aiutalo
+            a Smettere attorno a tre cose.
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-12 gap-5">
-        {testimonials.map((t) => (
+        {pillars.map((p) => (
           <article
-            key={t.name}
-            className={`col-span-12 md:col-span-4 rounded-2xl overflow-hidden flex flex-col ${
-              t.dark
+            key={p.label}
+            className={`col-span-12 md:col-span-4 rounded-2xl p-7 sm:p-8 flex flex-col ${
+              p.dark
                 ? "bg-charcoal text-charcoal-foreground"
                 : "bg-card border border-border"
             }`}
           >
-            <div className="aspect-[4/3] overflow-hidden">
-              <img
-                src={t.img}
-                alt={t.imgAlt}
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-7 flex-1 flex flex-col">
-              <p className="font-display text-3xl leading-[1.05] mb-4">{t.quote}</p>
-              <div
-                className={`mt-auto pt-4 border-t ${
-                  t.dark ? "border-charcoal-foreground/15" : "border-border"
-                }`}
-              >
-                <p className="font-bold">{t.name}</p>
-                <p
-                  className={`text-sm ${
-                    t.dark ? "text-charcoal-foreground/60" : "text-muted-foreground"
-                  }`}
-                >
-                  {t.edition}
-                </p>
-              </div>
-            </div>
+            <p
+              className={`sec-num mb-6 ${
+                p.dark ? "text-charcoal-foreground/60" : "text-muted-foreground"
+              }`}
+            >
+              {p.label}
+            </p>
+            <h3 className="font-display text-5xl sm:text-6xl leading-[0.95] mb-6 whitespace-pre-line">
+              {p.title}
+            </h3>
+            <p
+              className={`leading-relaxed ${
+                p.dark ? "text-charcoal-foreground/80" : "text-ink2"
+              }`}
+            >
+              {p.body}
+            </p>
           </article>
         ))}
       </div>
@@ -95,7 +89,7 @@ const Testimonials = () => (
       {/* Stats */}
       <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden">
         {stats.map((s) => (
-          <div key={s.value} className="bg-background p-7">
+          <div key={s.label} className="bg-background p-7">
             <p className="font-display text-5xl sm:text-6xl text-primary leading-none mb-2">
               {s.value}
             </p>

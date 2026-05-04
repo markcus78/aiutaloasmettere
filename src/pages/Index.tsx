@@ -15,7 +15,7 @@ const navLinks = [
   { href: "#cosa", label: "Cos’è" },
   { href: "#funziona", label: "Come funziona" },
   { href: "#regaliamo", label: "Cosa ricevi" },
-  { href: "#testimonianze", label: "Storie" },
+  { href: "#metodo", label: "Metodo" },
   { href: "#faq", label: "FAQ" },
 ];
 
