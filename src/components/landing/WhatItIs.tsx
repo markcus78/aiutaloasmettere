@@ -16,7 +16,7 @@ const rows = [
   },
   {
     n: "04",
-    title: "Zero costi. Nessun upsell.",
+    title: "Zero costi. Nessuna vendita nascosta.",
     body: 'Niente carta di credito. Niente abbonamento "in regalo per il primo mese". Se vorrai continuare, lo decidi alla fine — non adesso.',
   },
 ];

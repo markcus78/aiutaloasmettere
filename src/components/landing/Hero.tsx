@@ -73,8 +73,7 @@ const Hero = ({ hideCTA = false }: HeroProps) => (
 
           <p className="text-lg sm:text-2xl text-ink2 max-w-2xl leading-relaxed mb-8">
             Un percorso gratuito di 5 settimane, costruito per chi{" "}
-            <strong className="text-foreground">ha sempre rimandato</strong> e questa volta vuole
-            farla finita. Niente prove omaggio. Niente abbonamenti nascosti.{" "}
+            <strong className="text-foreground">ha ricominciato 38 volte</strong> e vuole che la 39a sia quella che dura. Niente prove omaggio. Niente abbonamenti nascosti.{" "}
             <span className="marker font-bold">Solo l&apos;allenamento, il trainer, e tu.</span>
           </p>
 
